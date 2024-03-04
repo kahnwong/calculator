@@ -11,10 +11,12 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title>
-          Todo app
-        </q-toolbar-title>
       </q-toolbar>
+      <div class="q-px-lg q-pt-xl q-mb-md">
+        <div class="text-h3">Todo</div>
+        <div class="text-subtitle1">Monday 4, 2024</div>
+      </div>
+      <q-img src="public/header.jpg" class="header absolute-top"/>
     </q-header>
 
     <q-drawer
@@ -78,3 +80,12 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss">
+.header {
+  height: 100%;
+  z-index: -1;
+  opacity: 0.2;
+  filter: grayscale(100%);
+}
+</style>
