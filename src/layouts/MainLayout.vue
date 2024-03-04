@@ -10,32 +10,19 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-
       </q-toolbar>
       <div class="q-px-lg q-pt-xl q-mb-md">
         <div class="text-h3">Todo</div>
         <div class="text-subtitle1">{{ todayDate }}</div>
       </div>
-      <q-img src="public/header.jpg" class="header absolute-top"/>
+      <q-img src="public/header.jpg" class="header absolute-top" />
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label
-          header
-        >
-          Apps
-        </q-item-label>
+        <q-item-label header> Apps </q-item-label>
 
-        <Apps
-          v-for="link in apps"
-          :key="link.title"
-          v-bind="link"
-        />
+        <Apps v-for="link in apps" :key="link.title" v-bind="link" />
       </q-list>
     </q-drawer>
 
@@ -52,41 +39,44 @@ import App from 'components/App.vue';
 const linksList = [
   {
     title: 'Docs',
-    link: 'https://quasar.dev'
+    link: 'https://quasar.dev',
   },
   {
     title: 'Github',
-    link: 'https://github.com/quasarframework'
+    link: 'https://github.com/quasarframework',
+  },
+  {
+    title: 'Help',
+    link: '/help',
   },
 ];
 
-import {date} from 'quasar';
-
+import { date } from 'quasar';
 
 export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    Apps: App
+    Apps: App,
   },
 
-  setup () {
-    const leftDrawerOpen = ref(false)
+  setup() {
+    const leftDrawerOpen = ref(false);
 
     return {
       apps: linksList,
       leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
-    }
+      toggleLeftDrawer() {
+        leftDrawerOpen.value = !leftDrawerOpen.value;
+      },
+    };
   },
-  computed : {
+  computed: {
     todayDate() {
-      const timeStamp = Date.now()
-      return date.formatDate(timeStamp, 'dddd D MMMM')
-    }
-  }
+      const timeStamp = Date.now();
+      return date.formatDate(timeStamp, 'dddd D MMMM');
+    },
+  },
 });
 </script>
 
