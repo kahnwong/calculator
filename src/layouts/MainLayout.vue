@@ -15,7 +15,7 @@
         <div class="text-h3">Todo</div>
         <div class="text-subtitle1">{{ todayDate }}</div>
       </div>
-      <q-img src="public/header.jpg" class="header absolute-top" />
+      <q-img src="header.jpg" class="header absolute-top" />
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
