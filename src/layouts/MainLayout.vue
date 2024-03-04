@@ -38,14 +38,6 @@ import App from 'components/App.vue';
 
 const linksList = [
   {
-    title: 'Docs',
-    link: 'https://quasar.dev',
-  },
-  {
-    title: 'Github',
-    link: 'https://github.com/quasarframework',
-  },
-  {
     title: 'Todo',
     link: '/',
   },
