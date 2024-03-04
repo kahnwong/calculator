@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          Todo app
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
