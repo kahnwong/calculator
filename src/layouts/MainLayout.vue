@@ -46,6 +46,10 @@ const linksList = [
     link: 'https://github.com/quasarframework',
   },
   {
+    title: 'Todo',
+    link: '/',
+  },
+  {
     title: 'Help',
     link: '/help',
   },
