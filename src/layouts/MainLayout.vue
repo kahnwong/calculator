@@ -14,7 +14,7 @@
       </q-toolbar>
       <div class="q-px-lg q-pt-xl q-mb-md">
         <div class="text-h3">Todo</div>
-        <div class="text-subtitle1">Monday 4, 2024</div>
+        <div class="text-subtitle1">{{ todayDate }}</div>
       </div>
       <q-img src="public/header.jpg" class="header absolute-top"/>
     </q-header>
@@ -60,6 +60,9 @@ const linksList = [
   },
 ];
 
+import {date} from 'quasar';
+
+
 export default defineComponent({
   name: 'MainLayout',
 
@@ -76,6 +79,12 @@ export default defineComponent({
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
       }
+    }
+  },
+  computed : {
+    todayDate() {
+      const timeStamp = Date.now()
+      return date.formatDate(timeStamp, 'dddd D MMMM')
     }
   }
 });
