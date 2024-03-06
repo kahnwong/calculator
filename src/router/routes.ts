@@ -3,9 +3,10 @@ import { RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
+    redirect: '/meetings',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '/', component: () => import('pages/MeetingsPage.vue') },
+      { path: '/meetings', component: () => import('pages/MeetingsPage.vue') },
       {
         path: '/gke-autopilot',
         component: () => import('pages/GKEAutopilot.vue'),
