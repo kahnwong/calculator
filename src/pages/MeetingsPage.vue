@@ -122,7 +122,7 @@ export default defineComponent({
       return {
         costPerMeeting: Math.round(costPerHour),
         costPerMinute: Math.round(
-          costPerHour / this.meetingDurationMinutes.value
+          costPerHour / 60
         ),
         costPerYear: Math.round(costPerHour * 52),
       };
