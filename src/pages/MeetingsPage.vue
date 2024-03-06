@@ -109,9 +109,6 @@ export default defineComponent({
   method: {},
   computed: {
     finalValue() {
-      // sanitize
-      // let attendees = this.attendees.value < 0 ? 0 : this.attendees.value;
-
       // one month has 174 work hours
       let meetingDurationHours = this.meetingDurationMinutes.value / 60;
       let avgSalaryPerHour = this.avgAttendeesSalaryPerYear.value / 12 / 174;
