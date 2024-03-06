@@ -34,16 +34,35 @@
           v-model.number="meetingDurationMinutes.value"
           :increment-value="meetingDurationMinutes.increment"
           label="Meeting duration (minutes)"
+          :rules="[
+            (val) =>
+              val >= meetingDurationMinutes.min ||
+              `Minimum value is ${meetingDurationMinutes.min}`,
+            (val) =>
+              val <= meetingDurationMinutes.max ||
+              `Maximum value is ${meetingDurationMinutes.max}`,
+          ]"
         />
         <NumberInputComponent
           v-model.number="timesPerWeek.value"
           :increment-value="timesPerWeek.increment"
           label="Times per week"
+          :rules="[
+            (val) =>
+              val >= timesPerWeek.min || `Minimum value is ${timesPerWeek.min}`,
+            (val) =>
+              val <= timesPerWeek.max || `Maximum value is ${timesPerWeek.max}`,
+          ]"
         />
         <NumberInputComponent
           v-model.number="avgAttendeesSalaryPerYear.value"
           :increment-value="avgAttendeesSalaryPerYear.increment"
           label="Average attendee salary (per year)"
+          :rules="[
+            (val) =>
+              val >= avgAttendeesSalaryPerYear.min ||
+              `Minimum value is ${avgAttendeesSalaryPerYear.min}`,
+          ]"
         />
       </div>
     </div>
@@ -68,14 +87,19 @@ export default defineComponent({
       meetingDurationMinutes: {
         value: 30,
         increment: 30,
+        min: 30,
+        max: 3600,
       },
       timesPerWeek: {
         value: 1,
         increment: 1,
+        min: 1,
+        max: 7,
       },
       avgAttendeesSalaryPerYear: {
         value: 100000,
         increment: 100000,
+        min: 50000,
       },
     };
   },
