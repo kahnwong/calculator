@@ -21,6 +21,7 @@
           v-model.number="attendees.value"
           :increment-value="attendees.increment"
           :min-value="attendees.min"
+          :max-value="attendees.max"
           label="Number of attendees"
           :rules="[
             (val) =>
