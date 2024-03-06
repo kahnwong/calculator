@@ -93,9 +93,11 @@ export default defineComponent({
         avgSalaryPerHour;
 
       return {
-        costPerMeeting: costPerHour,
-        costPerMinute: costPerHour / this.meetingDurationMinutes.value,
-        costPerYear: costPerHour * 52,
+        costPerMeeting: Math.round(costPerHour),
+        costPerMinute: Math.round(
+          costPerHour / this.meetingDurationMinutes.value
+        ),
+        costPerYear: Math.round(costPerHour * 52),
       };
     },
   },
