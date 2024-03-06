@@ -10,11 +10,11 @@
     <div class="row">
       <div class="col-4 q-pl-lg">
         <div class="text-h4 text-bold">${{ finalValue.costPerMeeting }}</div>
-        <div class="q-pb-lg">per meeting</div>
+        <div class="q-pb-xl">per meeting</div>
         <div class="text-h4 text-bold">${{ finalValue.costPerMinute }}</div>
-        <div class="q-pb-lg">per minute</div>
+        <div class="q-pb-xl">per minute</div>
         <div class="text-h4 text-bold">${{ finalValue.costPerYear }}</div>
-        <div class="q-pb-lg">per year</div>
+        <div class="q-pb-xl">per year</div>
       </div>
       <div class="col-4">
         <NumberInputComponent
