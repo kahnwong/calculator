@@ -18,6 +18,16 @@
           :increment-value="meetingDurationMinutes.increment"
           label="Meeting duration (minutes)"
         />
+        <NumberInputComponent
+          v-model.number="timesPerWeek.value"
+          :increment-value="timesPerWeek.increment"
+          label="Times per week"
+        />
+        <NumberInputComponent
+          v-model.number="averageAttendeesSalaryPerYear.value"
+          :increment-value="averageAttendeesSalaryPerYear.increment"
+          label="Average attendee salary (per year)"
+        />
       </div>
       <div class="col-6">{{ finalValue }}</div>
     </div>
@@ -40,6 +50,14 @@ export default defineComponent({
       meetingDurationMinutes: {
         value: 30,
         increment: 30,
+      },
+      timesPerWeek: {
+        value: 1,
+        increment: 1,
+      },
+      averageAttendeesSalaryPerYear: {
+        value: 100000,
+        increment: 100000,
       },
     };
   },
