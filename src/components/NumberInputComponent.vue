@@ -4,7 +4,7 @@
     dense
     :model-value="modelValue"
     @update:model-value="(value) => $emit('update:modelValue', value)"
-    class="q-pa-md"
+    class="q-pa-sm"
   >
     <template v-slot:append>
       <div class="row justify-center items-center text-center full-height">

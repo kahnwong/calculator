@@ -1,9 +1,11 @@
 <template>
   <q-page class="q-pa-lg">
-    <div class="text-h2 text-bold">Meeting Cost Calculator</div>
+    <div class="text-h2 text-bold q-pb-lg">Meeting Cost Calculator</div>
 
-    <div class="text-h4 text-bold">How much does this meeting really cost?</div>
-
+    <div class="text-h4 text-bold q-pb-md">
+      How much does this meeting really cost?
+    </div>
+    <div class="q-pb-md"></div>
     <div class="row">
       <div class="col-4">
         <NumberInputComponent
