@@ -12,12 +12,18 @@
               class="row justify-center items-center text-center full-height"
             >
               <div
-                class="col-6 bg-red row justify-center items-center text-center full-height q-px-sm"
+                class="col-6 row justify-center items-center text-center full-height q-px-sm"
+                :class="bgPlusActive ? 'bg-blue' : ''"
+                @mouseover="bgPlusActive = true"
+                @mouseleave="bgPlusActive = false"
               >
                 <q-icon name="fa-solid fa-plus" class="cursor-pointer" />
               </div>
               <div
-                class="col-6 bg-blue row justify-center items-center text-center full-height q-px-sm"
+                class="col-6 row justify-center items-center text-center full-height q-px-sm"
+                :class="bgMinusActive ? 'bg-blue' : ''"
+                @mouseover="bgMinusActive = true"
+                @mouseleave="bgMinusActive = false"
               >
                 <q-icon name="fa-solid fa-minus" class="cursor-pointer" />
               </div>
@@ -29,3 +35,17 @@
     </div>
   </q-page>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+export default defineComponent({
+  name: 'HelpPage',
+  data() {
+    return {
+      bgPlusActive: false,
+      bgMinusActive: false,
+    };
+  },
+  method: {},
+});
+</script>
