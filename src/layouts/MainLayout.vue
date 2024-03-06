@@ -1,6 +1,5 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
         <q-item-label header> Apps </q-item-label>
@@ -25,8 +24,8 @@ const linksList = [
     link: '/',
   },
   {
-    title: 'Help',
-    link: '/help',
+    title: 'Meetings',
+    link: '/meetings',
   },
 ];
 
