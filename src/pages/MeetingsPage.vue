@@ -1,6 +1,7 @@
 <template>
   <q-page class="q-pa-lg">
-    <div class="text-h2 text-bold q-pb-lg">Meeting Cost Calculator</div>
+    <div class="q-pt-lg"></div>
+    <div class="text-h2 text-bold q-pb-lg q-pt-lg">Meeting Cost Calculator</div>
 
     <div class="text-h4 text-bold q-pb-md">
       How much does this meeting really cost?
