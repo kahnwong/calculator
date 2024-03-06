@@ -1,7 +1,7 @@
 <template>
   <q-input
     class="q-pa-md"
-    outlined
+    filled
     dense
     :model-value="modelValue <= minValue ? minValue : modelValue"
     @update:model-value="updateModelValue"
