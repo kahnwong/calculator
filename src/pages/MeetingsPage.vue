@@ -30,7 +30,14 @@
           label="Average attendee salary (per year)"
         />
       </div>
-      <div class="col-6">{{ finalValue }}</div>
+      <div class="col-6 q-pl-lg">
+        <div class="text-h4 text-bold">${{ finalValue.costPerMeeting }}</div>
+        <div class="q-pb-lg">per meeting</div>
+        <div class="text-h4 text-bold">${{ finalValue.costPerMinute }}</div>
+        <div class="q-pb-lg">per minute</div>
+        <div class="text-h4 text-bold">${{ finalValue.costPerYear }}</div>
+        <div class="q-pb-lg">per year</div>
+      </div>
     </div>
   </q-page>
 </template>
@@ -65,7 +72,12 @@ export default defineComponent({
   method: {},
   computed: {
     finalValue() {
-      return this.attendees.value * this.meetingDurationMinutes.value;
+      return {
+        costPerMeeting:
+          this.attendees.value * this.meetingDurationMinutes.value,
+        costPerMinute: 4,
+        costPerYear: 100,
+      };
     },
   },
 });
