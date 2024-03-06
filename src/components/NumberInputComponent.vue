@@ -10,7 +10,7 @@
       <div class="row justify-center items-center text-center full-height">
         <div
           class="col-6 row justify-center items-center text-center full-height q-px-sm"
-          :class="bgPlusActive ? 'bg-blue' : ''"
+          :class="bgPlusActive ? 'bg-blue text-white' : ''"
           @mouseover="bgPlusActive = true"
           @mouseleave="bgPlusActive = false"
           @click="$emit('update:modelValue', modelValue + incrementValue)"
@@ -19,7 +19,7 @@
         </div>
         <div
           class="col-6 row justify-center items-center text-center full-height q-px-sm"
-          :class="bgMinusActive ? 'bg-blue' : ''"
+          :class="bgMinusActive ? 'bg-blue text-white' : ''"
           @mouseover="bgMinusActive = true"
           @mouseleave="bgMinusActive = false"
           @click="$emit('update:modelValue', modelValue - incrementValue)"
