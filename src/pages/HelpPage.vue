@@ -15,7 +15,7 @@
           label="Meeting duration (minutes)"
         />
       </div>
-      <div class="col-6">a b c</div>
+      <div class="col-6">{{ finalValue }}</div>
     </div>
   </q-page>
 </template>
@@ -34,5 +34,10 @@ export default defineComponent({
     };
   },
   method: {},
+  computed: {
+    finalValue() {
+      return this.attendees * this.meetingDurationMinutes;
+    },
+  },
 });
 </script>
