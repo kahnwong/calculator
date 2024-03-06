@@ -5,7 +5,7 @@
     <div class="text-h4 text-bold">How much does this meeting really cost?</div>
 
     <div class="row">
-      <div class="col-6">
+      <div class="col-4">
         <NumberInputComponent
           v-model.number="attendees"
           label="Number of attendees"
