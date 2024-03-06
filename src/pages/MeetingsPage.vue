@@ -31,17 +31,17 @@
           ]"
         />
         <NumberInputComponent
-          v-model.number="meetingDurationMinutes.value"
-          :increment-value="meetingDurationMinutes.increment"
-          :min-value="meetingDurationMinutes.min"
-          label="Meeting duration (minutes)"
+          v-model.number="meetingDurationHours.value"
+          :increment-value="meetingDurationHours.increment"
+          :min-value="meetingDurationHours.min"
+          label="Meeting duration (hours)"
           :rules="[
             (val) =>
-              val >= meetingDurationMinutes.min ||
-              `Minimum value is ${meetingDurationMinutes.min}`,
+              val >= meetingDurationHours.min ||
+              `Minimum value is ${meetingDurationHours.min}`,
             (val) =>
-              val <= meetingDurationMinutes.max ||
-              `Maximum value is ${meetingDurationMinutes.max}`,
+              val <= meetingDurationHours.max ||
+              `Maximum value is ${meetingDurationHours.max}`,
           ]"
         />
         <NumberInputComponent
@@ -87,11 +87,11 @@ export default defineComponent({
         min: 3,
         max: 15,
       },
-      meetingDurationMinutes: {
-        value: 30,
-        increment: 30,
-        min: 30,
-        max: 3600,
+      meetingDurationHours: {
+        value: 1,
+        increment: 1,
+        min: 0.5,
+        max: 6,
       },
       timesPerWeek: {
         value: 1,
@@ -110,12 +110,11 @@ export default defineComponent({
   computed: {
     finalValue() {
       // one month has 174 work hours
-      let meetingDurationHours = this.meetingDurationMinutes.value / 60;
       let avgSalaryPerHour = this.avgAttendeesSalaryPerYear.value / 12 / 174;
 
       let costPerHour =
         this.attendees.value *
-        meetingDurationHours *
+        this.meetingDurationHours.value *
         this.timesPerWeek.value *
         avgSalaryPerHour;
 
