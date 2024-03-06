@@ -20,7 +20,13 @@
         <NumberInputComponent
           v-model.number="attendees.value"
           :increment-value="attendees.increment"
+          :min-value="attendees.min"
+          :max-value="attendees.max"
           label="Number of attendees"
+          :rules="[
+      (val) => val >= attendees.min || `Minimum value is ${attendees.min}`,
+      (val) => val <= attendees.max || `Maximum value is ${attendees.max}`,
+    ]"
         />
         <NumberInputComponent
           v-model.number="meetingDurationMinutes.value"
@@ -54,6 +60,8 @@ export default defineComponent({
       attendees: {
         value: 5,
         increment: 1,
+        min:3,
+        max:15,
       },
       meetingDurationMinutes: {
         value: 30,
