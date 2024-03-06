@@ -6,14 +6,20 @@
 
     <div class="row">
       <div class="col-6">
-        <q-input outlined>
+        <q-input outlined dense>
           <template v-slot:append>
-            <div class="row">
-              <div class="col-6">
-                <q-icon name="fa-solid fa-plus" />
+            <div
+              class="row justify-center items-center text-center full-height"
+            >
+              <div
+                class="col-6 bg-red row justify-center items-center text-center full-height q-px-sm"
+              >
+                <q-icon name="fa-solid fa-plus" class="cursor-pointer" />
               </div>
-              <div class="col-6">
-                <q-icon name="fa-solid fa-minus" />
+              <div
+                class="col-6 bg-blue row justify-center items-center text-center full-height q-px-sm"
+              >
+                <q-icon name="fa-solid fa-minus" class="cursor-pointer" />
               </div>
             </div>
           </template>
