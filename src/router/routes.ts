@@ -6,6 +6,10 @@ const routes: RouteRecordRaw[] = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '/', component: () => import('pages/MeetingsPage.vue') },
+      {
+        path: '/gke-autopilot',
+        component: () => import('pages/GKEAutopilot.vue'),
+      },
     ],
   },
 

@@ -23,6 +23,10 @@ const linksList = [
     title: 'Meetings',
     link: '/',
   },
+  {
+    title: 'GKE Autopilot',
+    link: '/gke-autopilot',
+  },
 ];
 
 export default defineComponent({
