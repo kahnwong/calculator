@@ -29,8 +29,6 @@ const linksList = [
   },
 ];
 
-import { date } from 'quasar';
-
 export default defineComponent({
   name: 'MainLayout',
 
