@@ -20,12 +20,8 @@ import App from 'components/App.vue';
 
 const linksList = [
   {
-    title: 'Todo',
-    link: '/',
-  },
-  {
     title: 'Meetings',
-    link: '/meetings',
+    link: '/',
   },
 ];
 
