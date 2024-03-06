@@ -1,10 +1,14 @@
 <template>
   <q-input
+    class="q-pa-md"
     outlined
     dense
     :model-value="modelValue"
     @update:model-value="(value) => $emit('update:modelValue', value)"
-    class="q-pa-sm"
+    :rules="[
+      (val) => val >= 3 || 'Minimum value is 3',
+      (val) => val <= 10 || 'Maximum value is 10',
+    ]"
   >
     <template v-slot:append>
       <div class="row justify-center items-center text-center full-height">
