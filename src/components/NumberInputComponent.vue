@@ -53,16 +53,16 @@ export default defineComponent({
       bgMinusActive: false,
     };
   },
-  methods:{
+  methods: {
     updateModelValue(value: number) {
-      if(this.minValue && value < this.minValue) {
+      if (this.minValue && value < this.minValue) {
         value = this.minValue;
         this.$q.notify({
           message: `Minimum value is ${this.minValue}`,
           color: 'negative',
         });
       }
-      if(this.maxValue && value > this.maxValue) {
+      if (this.maxValue && value > this.maxValue) {
         value = this.maxValue;
         this.$q.notify({
           message: `Maximum value is ${this.maxValue}`,
@@ -72,5 +72,5 @@ export default defineComponent({
       this.$emit('update:modelValue', value);
     },
   },
-})
+});
 </script>
