@@ -3,7 +3,7 @@
     class="q-pa-md"
     filled
     dense
-    :model-value="modelValue <= minValue ? minValue : modelValue"
+    :model-value="modelValue"
     @update:model-value="updateModelValue"
   >
     <template v-slot:append>
