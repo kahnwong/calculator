@@ -21,7 +21,6 @@
           v-model.number="attendees.value"
           :increment-value="attendees.increment"
           :min-value="attendees.min"
-          :max-value="attendees.max"
           label="Number of attendees"
           :rules="[
             (val) =>
@@ -33,6 +32,7 @@
         <NumberInputComponent
           v-model.number="meetingDurationMinutes.value"
           :increment-value="meetingDurationMinutes.increment"
+          :min-value="meetingDurationMinutes.min"
           label="Meeting duration (minutes)"
           :rules="[
             (val) =>
@@ -46,6 +46,7 @@
         <NumberInputComponent
           v-model.number="timesPerWeek.value"
           :increment-value="timesPerWeek.increment"
+          :min-value="timesPerWeek.min"
           label="Times per week"
           :rules="[
             (val) =>
@@ -57,6 +58,7 @@
         <NumberInputComponent
           v-model.number="avgAttendeesSalaryPerYear.value"
           :increment-value="avgAttendeesSalaryPerYear.increment"
+          :min-value="avgAttendeesSalaryPerYear.min"
           label="Average attendee salary (per year)"
           :rules="[
             (val) =>
@@ -98,7 +100,7 @@ export default defineComponent({
       },
       avgAttendeesSalaryPerYear: {
         value: 100000,
-        increment: 100000,
+        increment: 50000,
         min: 50000,
       },
     };
@@ -106,6 +108,9 @@ export default defineComponent({
   method: {},
   computed: {
     finalValue() {
+      // sanitize
+      // let attendees = this.attendees.value < 0 ? 0 : this.attendees.value;
+
       // one month has 174 work hours
       let meetingDurationHours = this.meetingDurationMinutes.value / 60;
       let avgSalaryPerHour = this.avgAttendeesSalaryPerYear.value / 12 / 174;

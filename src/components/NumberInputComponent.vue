@@ -3,7 +3,7 @@
     class="q-pa-md"
     outlined
     dense
-    :model-value="modelValue"
+    :model-value="modelValue <= minValue ? minValue : modelValue"
     @update:model-value="(value) => $emit('update:modelValue', value)"
   >
     <template v-slot:append>
@@ -36,6 +36,7 @@ export default {
   props: {
     modelValue: {},
     incrementValue: {},
+    minValue: {},
   },
   data() {
     return {
