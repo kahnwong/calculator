@@ -41,8 +41,8 @@
           label="Times per week"
         />
         <NumberInputComponent
-          v-model.number="averageAttendeesSalaryPerYear.value"
-          :increment-value="averageAttendeesSalaryPerYear.increment"
+          v-model.number="avgAttendeesSalaryPerYear.value"
+          :increment-value="avgAttendeesSalaryPerYear.increment"
           label="Average attendee salary (per year)"
         />
       </div>
@@ -73,7 +73,7 @@ export default defineComponent({
         value: 1,
         increment: 1,
       },
-      averageAttendeesSalaryPerYear: {
+      avgAttendeesSalaryPerYear: {
         value: 100000,
         increment: 100000,
       },
@@ -82,11 +82,20 @@ export default defineComponent({
   method: {},
   computed: {
     finalValue() {
+      // one month has 174 work hours
+      let meetingDurationHours = this.meetingDurationMinutes.value / 60;
+      let avgSalaryPerHour = this.avgAttendeesSalaryPerYear.value / 12 / 174;
+
+      let costPerHour =
+        this.attendees.value *
+        meetingDurationHours *
+        this.timesPerWeek.value *
+        avgSalaryPerHour;
+
       return {
-        costPerMeeting:
-          this.attendees.value * this.meetingDurationMinutes.value,
-        costPerMinute: 4,
-        costPerYear: 100,
+        costPerMeeting: costPerHour,
+        costPerMinute: costPerHour / this.meetingDurationMinutes.value,
+        costPerYear: costPerHour * 52,
       };
     },
   },
