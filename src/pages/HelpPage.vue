@@ -6,7 +6,14 @@
 
     <div class="row">
       <div class="col-6">
-        <NumberInputComponent v-model.number="attendees" />
+        <NumberInputComponent
+          v-model.number="attendees"
+          label="Number of attendees"
+        />
+        <NumberInputComponent
+          v-model.number="meetingDurationMinutes"
+          label="Meeting duration (minutes)"
+        />
       </div>
       <div class="col-6">a b c</div>
     </div>
@@ -23,6 +30,7 @@ export default defineComponent({
   data() {
     return {
       attendees: 5,
+      meetingDurationMinutes: 30,
     };
   },
   method: {},
