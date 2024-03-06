@@ -9,14 +9,15 @@
     <div class="row">
       <div class="col-4">
         <NumberInputComponent
-          v-model.number="attendees"
-          :increment-value="incrementValue"
+          v-model.number="attendees.value"
+          :increment-value="attendees.increment"
           label="Number of attendees"
         />
-        <!--        <NumberInputComponent-->
-        <!--          v-model.number="meetingDurationMinutes"-->
-        <!--          label="Meeting duration (minutes)"-->
-        <!--        />-->
+        <NumberInputComponent
+          v-model.number="meetingDurationMinutes.value"
+          :increment-value="meetingDurationMinutes.increment"
+          label="Meeting duration (minutes)"
+        />
       </div>
       <div class="col-6">{{ finalValue }}</div>
     </div>
@@ -32,15 +33,20 @@ export default defineComponent({
   components: { NumberInputComponent },
   data() {
     return {
-      attendees: 5,
-      incrementValue: 100,
-      meetingDurationMinutes: 30,
+      attendees: {
+        value: 5,
+        increment: 1,
+      },
+      meetingDurationMinutes: {
+        value: 30,
+        increment: 30,
+      },
     };
   },
   method: {},
   computed: {
     finalValue() {
-      return this.attendees * this.meetingDurationMinutes;
+      return this.attendees.value * this.meetingDurationMinutes.value;
     },
   },
 });
