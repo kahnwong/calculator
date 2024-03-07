@@ -77,7 +77,7 @@
             />
           </div>
         </div>
-        <div class="row ">
+        <div class="row">
           <div class="fa-border">
             <div class="text-h4 text-bold q-pl-sm q-pt-sm">Blob Storage</div>
             <NumberInputComponent
@@ -154,8 +154,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import NumberInputComponent from 'components/NumberInputComponent.vue';
-import { cloudRun } from 'src/constants/GcpModel';
-import { containerApps } from 'src/constants/AzureModel';
+import { cloudRun, artifactRegistry } from 'src/constants/GcpModel';
+import { containerApps, containerRegistry } from 'src/constants/AzureModel';
 
 export default defineComponent({
   name: 'HelpPage',
@@ -229,6 +229,13 @@ export default defineComponent({
         this.requestsPerMonth.value
       ).cost();
 
+      let containerRegistryGCP = new artifactRegistry(
+        this.containerStorageGB.value
+      ).cost();
+      let containerRegistryAzure = new containerRegistry(
+        this.containerStorageGB.value
+      ).cost();
+
       // table data
       let columns = [
         {
@@ -254,11 +261,15 @@ export default defineComponent({
       ];
 
       let rows = [
-        // general purpose
         {
           name: 'CaaS',
           gcp: caasGCP,
           azure: caasAzure,
+        },
+        {
+          name: 'Container Registry',
+          gcp: containerRegistryGCP,
+          azure: containerRegistryAzure,
         },
       ];
 

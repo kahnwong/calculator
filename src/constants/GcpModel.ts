@@ -42,3 +42,23 @@ export class cloudRun {
     return costCPU + costMemory;
   }
 }
+
+export class artifactRegistry {
+  // """
+  // https://cloud.google.com/artifact-registry/pricing
+  // """
+
+  // cost
+  storagePerGBMonth = 0.1;
+
+  // user's input
+  storageGB = 1;
+
+  constructor(storageGB: number) {
+    this.storageGB = storageGB;
+  }
+
+  cost() {
+    return this.storagePerGBMonth * this.storageGB;
+  }
+}

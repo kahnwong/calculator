@@ -1,4 +1,4 @@
-import { cloudRun } from './GcpModel';
+import { cloudRun, artifactRegistry } from './GcpModel';
 
 // pricing
 // """
@@ -15,4 +15,12 @@ export class containerApps extends cloudRun {
   vCPUSecond = 0.000034;
   memorySecond = 0.000004;
   requestMillion = 0.4;
+}
+
+export class containerRegistry extends artifactRegistry {
+  // """
+  // https://azure.microsoft.com/en-us/pricing/details/container-registry/#pricing
+  // """
+
+  storagePerGBMonth = 0.667;
 }
