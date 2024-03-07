@@ -125,12 +125,32 @@
         </div>
       </div>
     </div>
+    <div class="row q-pl-sm q-pt-lg">
+      <div class="column">
+        <div class="text-h4 text-bold q-pb-sm">Cost</div>
+
+        <q-table
+          flat
+          bordered
+          dense
+          :rows="finalValue.rows"
+          :columns="finalValue.columns"
+          row-key="name"
+          rows-per-page-options="0"
+        />
+      </div>
+    </div>
   </q-page>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import NumberInputComponent from 'components/NumberInputComponent.vue';
+import {
+  generalPurpose,
+  scaleOutARM,
+  scaleOutX86,
+} from 'src/constants/GKEModel';
 
 export default defineComponent({
   name: 'HelpPage',
@@ -190,7 +210,49 @@ export default defineComponent({
   method: {},
   computed: {
     finalValue() {
-      return 3;
+      // constant
+      const fractionDigits = 3;
+
+      // table data
+      let columns = [
+        {
+          name: 'name',
+          required: true,
+          label: 'Service',
+          align: 'left',
+          field: (row) => {
+            return row.name;
+          },
+          format: (val) => `${val}`,
+        },
+        {
+          name: 'gcp',
+          label: 'GCP',
+          field: 'gcp',
+        },
+        {
+          name: 'azure',
+          label: 'Azure',
+          field: 'azure',
+        },
+      ];
+
+      // function perHourToPerMonth(perHour: number) {
+      //   return perHour * 24 * 30;
+      // }
+      let rows = [
+        // general purpose
+        {
+          name: 'General Purpose',
+          gcp: 3,
+          azure: 10,
+        },
+      ];
+
+      return {
+        columns: columns,
+        rows: rows,
+      };
     },
   },
 });
