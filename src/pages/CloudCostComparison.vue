@@ -158,11 +158,13 @@ import {
   cloudRun,
   artifactRegistry,
   cloudStorage,
+  genAILanguage,
 } from 'src/constants/GcpModel';
 import {
   containerApps,
   containerRegistry,
   blobStorage,
+  openAI,
 } from 'src/constants/AzureModel';
 
 export default defineComponent({
@@ -247,6 +249,17 @@ export default defineComponent({
       let blobStorageGCP = new cloudStorage(this.blobStorageGB.value).cost();
       let blobStorageAzure = new blobStorage(this.blobStorageGB.value).cost();
 
+      let genAIGCP = new genAILanguage(
+        this.genAIRequestsPerMonth.value,
+        this.genAIAvgInputChar.value,
+        this.genAIAvgOutputChar.value
+      ).cost();
+      let genAIAzure = new openAI(
+        this.genAIRequestsPerMonth.value,
+        this.genAIAvgInputChar.value,
+        this.genAIAvgOutputChar.value
+      ).cost();
+
       // table data
       let columns = [
         {
@@ -286,6 +299,11 @@ export default defineComponent({
           name: 'Blob Storage',
           gcp: blobStorageGCP,
           azure: blobStorageAzure,
+        },
+        {
+          name: 'Gen AI',
+          gcp: genAIGCP,
+          azure: genAIAzure,
         },
       ];
 

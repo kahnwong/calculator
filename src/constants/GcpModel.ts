@@ -71,3 +71,37 @@ export class cloudStorage extends artifactRegistry {
   // cost
   storagePerGBMonth = 0.02;
 }
+
+export class genAILanguage {
+  // """
+  // https://cloud.google.com/vertex-ai/docs/generative-ai/pricing
+  // PaLM 2 for Text
+  // """
+
+  // cost
+  inputPerThousandCharacter = 0.00025;
+  outputPerThousandCharacter = 0.0005;
+
+  // user's input
+  requestsPerMonth = 20000;
+  avgInputCharacter = 1000;
+  avgOutputCharacter = 2000;
+
+  constructor(
+    requestsPerMonth: number,
+    avgInputCharacter: number,
+    avgOutputCharacter: number
+  ) {
+    this.requestsPerMonth = requestsPerMonth;
+    this.avgInputCharacter = avgInputCharacter;
+    this.avgOutputCharacter = avgOutputCharacter;
+  }
+
+  cost() {
+    const costPerRequest =
+      (this.inputPerThousandCharacter * this.avgInputCharacter) / 1000 +
+      (this.outputPerThousandCharacter * this.avgOutputCharacter) / 1000;
+
+    return costPerRequest * this.requestsPerMonth;
+  }
+}

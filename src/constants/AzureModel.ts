@@ -1,4 +1,4 @@
-import { cloudRun, artifactRegistry } from './GcpModel';
+import { cloudRun, artifactRegistry, genAILanguage } from './GcpModel';
 
 // pricing
 // """
@@ -33,4 +33,15 @@ export class blobStorage extends containerRegistry {
 
   // cost
   storagePerGBMonth = 0.02;
+}
+
+export class openAI extends genAILanguage {
+  // """
+  // https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/#pricing
+  // GPT-3.5-Turbo-0125
+  // """
+
+  // cost
+  inputPerThousandCharacter = 0.0005;
+  outputPerThousandCharacter = 0.0015;
 }
