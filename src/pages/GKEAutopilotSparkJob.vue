@@ -103,9 +103,18 @@ export default defineComponent({
         this.jobDurationHour.value *
         (1 + this.executors.value);
 
+      // scale out arm spot
+      let scaleOutARMSpotPricePerHour =
+        this.vCPU.value * scaleOutARM.cpu_spot +
+        this.memory.value * scaleOutARM.memory_spot;
+      let scaleOutARMSpotPrice =
+        scaleOutARMSpotPricePerHour *
+        this.jobDurationHour.value *
+        (1 + this.executors.value);
+
       return {
         regularSpotPrice: regularSpotPrice,
-        scaleOutARMSpotPrice: 4444,
+        scaleOutARMSpotPrice: scaleOutARMSpotPrice,
       };
     },
   },
