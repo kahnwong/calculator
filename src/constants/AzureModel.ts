@@ -24,3 +24,13 @@ export class containerRegistry extends artifactRegistry {
 
   storagePerGBMonth = 0.667;
 }
+
+export class blobStorage extends containerRegistry {
+  // """
+  // https://azure.microsoft.com/en-us/pricing/details/storage/blobs/#pricing
+  // Standard
+  // """
+
+  // cost
+  storagePerGBMonth = 0.02;
+}

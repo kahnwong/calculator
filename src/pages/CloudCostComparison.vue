@@ -154,8 +154,16 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import NumberInputComponent from 'components/NumberInputComponent.vue';
-import { cloudRun, artifactRegistry } from 'src/constants/GcpModel';
-import { containerApps, containerRegistry } from 'src/constants/AzureModel';
+import {
+  cloudRun,
+  artifactRegistry,
+  cloudStorage,
+} from 'src/constants/GcpModel';
+import {
+  containerApps,
+  containerRegistry,
+  blobStorage,
+} from 'src/constants/AzureModel';
 
 export default defineComponent({
   name: 'HelpPage',
@@ -236,6 +244,9 @@ export default defineComponent({
         this.containerStorageGB.value
       ).cost();
 
+      let blobStorageGCP = new cloudStorage(this.blobStorageGB.value).cost();
+      let blobStorageAzure = new blobStorage(this.blobStorageGB.value).cost();
+
       // table data
       let columns = [
         {
@@ -270,6 +281,11 @@ export default defineComponent({
           name: 'Container Registry',
           gcp: containerRegistryGCP,
           azure: containerRegistryAzure,
+        },
+        {
+          name: 'Blob Storage',
+          gcp: blobStorageGCP,
+          azure: blobStorageAzure,
         },
       ];
 

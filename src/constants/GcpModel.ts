@@ -62,3 +62,12 @@ export class artifactRegistry {
     return this.storagePerGBMonth * this.storageGB;
   }
 }
+
+export class cloudStorage extends artifactRegistry {
+  // """
+  // https://cloud.google.com/storage/pricing
+  // """
+
+  // cost
+  storagePerGBMonth = 0.02;
+}
