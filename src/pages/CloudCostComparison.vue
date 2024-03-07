@@ -3,6 +3,14 @@
     <div class="q-pt-lg"></div>
     <div class="text-h2 text-bold q-pb-lg q-pt-lg">Cloud Cost Comparison</div>
 
+    <div>
+      <ul>
+        <li>Price is in <b>per month</b></li>
+        <li>Region: Singapore</li>
+        <li>GCP Gen AI model: <b>PaLM 2 for Text</b></li>
+        <li>Azure Gen AI model: <b>GPT-3.5-Turbo-0125</b></li>
+      </ul>
+    </div>
     <div class="q-pb-md"></div>
     <div class="row">
       <div class="col-4 q-pl-xs">
