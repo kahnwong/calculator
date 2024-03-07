@@ -93,6 +93,17 @@ export default defineComponent({
         memory_three_year_commitment: 0.0026721,
       };
 
+      let scaleOutX86 = {
+        cpu_regular: 0.0692,
+        memory_regular: 0.0076518,
+        cpu_spot: 0.0208,
+        memory_spot: 0.0022956,
+        cpu_one_year_commitment: 0.05536,
+        memory_one_year_commitment: 0.00612144,
+        cpu_three_year_commitment: 0.03806,
+        memory_three_year_commitment: 0.0042085,
+      };
+
       // base price
       let generalPurposeRegularPerHour =
         this.vCPU.value * generalPurpose.cpu_regular +
@@ -119,6 +130,19 @@ export default defineComponent({
       let scaleOutARMThreeYearCommitmentPerHour =
         this.vCPU.value * scaleOutARM.cpu_three_year_commitment +
         this.memory.value * scaleOutARM.memory_three_year_commitment;
+
+      let scaleOutX86RegularPerHour =
+        this.vCPU.value * scaleOutX86.cpu_regular +
+        this.memory.value * scaleOutX86.memory_regular;
+      let scaleOutX86SpotPerHour =
+        this.vCPU.value * scaleOutX86.cpu_spot +
+        this.memory.value * scaleOutX86.memory_spot;
+      let scaleOutX86OneYearCommitmentPerHour =
+        this.vCPU.value * scaleOutX86.cpu_one_year_commitment +
+        this.memory.value * scaleOutX86.memory_one_year_commitment;
+      let scaleOutX86ThreeYearCommitmentPerHour =
+        this.vCPU.value * scaleOutX86.cpu_three_year_commitment +
+        this.memory.value * scaleOutX86.memory_three_year_commitment;
 
       // constant
       const fractionDigits = 3;
@@ -224,6 +248,41 @@ export default defineComponent({
             scaleOutARMThreeYearCommitmentPerHour.toFixed(fractionDigits),
           pricePerMonth: perHourToPerMonth(
             scaleOutARMThreeYearCommitmentPerHour
+          ).toFixed(fractionDigits),
+        },
+        // scale-out x86
+        {
+          name: 'Scale-Out x86',
+          pricing: 'Regular',
+          pricePerHour: scaleOutX86RegularPerHour.toFixed(fractionDigits),
+          pricePerMonth: perHourToPerMonth(scaleOutX86RegularPerHour).toFixed(
+            fractionDigits
+          ),
+        },
+        {
+          name: 'Scale-Out x86',
+          pricing: 'Spot',
+          pricePerHour: scaleOutX86SpotPerHour.toFixed(fractionDigits),
+          pricePerMonth: perHourToPerMonth(scaleOutX86SpotPerHour).toFixed(
+            fractionDigits
+          ),
+        },
+        {
+          name: 'Scale-Out x86',
+          pricing: '1 Year Commitment',
+          pricePerHour:
+            scaleOutX86OneYearCommitmentPerHour.toFixed(fractionDigits),
+          pricePerMonth: perHourToPerMonth(
+            scaleOutX86OneYearCommitmentPerHour
+          ).toFixed(fractionDigits),
+        },
+        {
+          name: 'Scale-Out x86',
+          pricing: '3 Year Commitment',
+          pricePerHour:
+            scaleOutX86ThreeYearCommitmentPerHour.toFixed(fractionDigits),
+          pricePerMonth: perHourToPerMonth(
+            scaleOutX86ThreeYearCommitmentPerHour
           ).toFixed(fractionDigits),
         },
       ];
