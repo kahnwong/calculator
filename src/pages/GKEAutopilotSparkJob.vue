@@ -62,7 +62,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import NumberInputComponent from 'components/NumberInputComponent.vue';
-import { generalPurpose, scaleOutARM } from 'src/constants/GKEModel';
+import { generalPurpose, scaleOutARM } from 'src/constants/GcpGkeModel';
 
 export default defineComponent({
   name: 'HelpPage',

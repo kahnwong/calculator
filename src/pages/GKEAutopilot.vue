@@ -48,7 +48,7 @@ import {
   generalPurpose,
   scaleOutARM,
   scaleOutX86,
-} from 'src/constants/GKEModel';
+} from 'src/constants/GcpGkeModel';
 
 export default defineComponent({
   name: 'HelpPage',
