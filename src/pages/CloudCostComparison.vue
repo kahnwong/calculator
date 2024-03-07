@@ -146,7 +146,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import NumberInputComponent from 'components/NumberInputComponent.vue';
-import { cloudRun } from 'src/constants/GCPModel';
+import { cloudRun } from 'src/constants/GcpModel';
 
 export default defineComponent({
   name: 'HelpPage',
