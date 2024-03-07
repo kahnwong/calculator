@@ -13,7 +13,7 @@
     </div>
     <div class="q-pb-md"></div>
     <div class="row">
-      <div class="col-2 q-pl-sm q-pr-lg">
+      <div class="col-3 q-pl-sm q-pr-lg">
         <div class="fa-border">
           <div class="text-h4 text-bold q-pl-sm q-pt-sm">CaaS</div>
           <NumberInputComponent
@@ -58,7 +58,7 @@
           />
         </div>
       </div>
-      <div class="col-2 q-pr-lg">
+      <div class="col-3 q-pr-lg">
         <div class="row q-pb-md">
           <div class="fa-border">
             <div class="text-h4 text-bold q-pl-sm q-pt-sm">
@@ -94,7 +94,7 @@
           </div>
         </div>
       </div>
-      <div class="col-2">
+      <div class="col-3">
         <div class="fa-border">
           <div class="text-h4 text-bold q-pl-sm q-pt-sm">Gen AI</div>
           <NumberInputComponent
