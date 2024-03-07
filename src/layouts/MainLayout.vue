@@ -27,6 +27,10 @@ const linksList = [
     title: 'GKE Autopilot',
     link: '/gke-autopilot',
   },
+  {
+    title: 'GKE Autopilot: Spark Job',
+    link: '/gke-autopilot-spark-job',
+  },
 ];
 
 export default defineComponent({

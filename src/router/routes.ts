@@ -11,6 +11,10 @@ const routes: RouteRecordRaw[] = [
         path: '/gke-autopilot',
         component: () => import('pages/GKEAutopilot.vue'),
       },
+      {
+        path: '/gke-autopilot-spark-job',
+        component: () => import('pages/GKEAutopilotSparkJob.vue'),
+      },
     ],
   },
 
