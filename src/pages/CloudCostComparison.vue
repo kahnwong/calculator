@@ -147,6 +147,7 @@
 import { defineComponent } from 'vue';
 import NumberInputComponent from 'components/NumberInputComponent.vue';
 import { cloudRun } from 'src/constants/GcpModel';
+import { containerApps } from 'src/constants/AzureModel';
 
 export default defineComponent({
   name: 'HelpPage',
@@ -216,6 +217,12 @@ export default defineComponent({
         this.executionTimePerRequestMS.value,
         this.requestsPerMonth.value
       ).cost();
+      let caasAzure = new containerApps(
+        this.vCPU.value,
+        this.memory.value,
+        this.executionTimePerRequestMS.value,
+        this.requestsPerMonth.value
+      ).cost();
 
       // table data
       let columns = [
@@ -246,7 +253,7 @@ export default defineComponent({
         {
           name: 'CaaS',
           gcp: caasGCP,
-          azure: 10,
+          azure: caasAzure,
         },
       ];
 
