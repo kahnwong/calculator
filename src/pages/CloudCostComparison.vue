@@ -260,6 +260,9 @@ export default defineComponent({
         this.genAIAvgOutputChar.value
       ).cost();
 
+      // constant
+      const fractionDigits = 2;
+
       // table data
       let columns = [
         {
@@ -287,23 +290,23 @@ export default defineComponent({
       let rows = [
         {
           name: 'CaaS',
-          gcp: caasGCP,
-          azure: caasAzure,
+          gcp: caasGCP.toFixed(fractionDigits),
+          azure: caasAzure.toFixed(fractionDigits),
         },
         {
           name: 'Container Registry',
-          gcp: containerRegistryGCP,
-          azure: containerRegistryAzure,
+          gcp: containerRegistryGCP.toFixed(fractionDigits),
+          azure: containerRegistryAzure.toFixed(fractionDigits),
         },
         {
           name: 'Blob Storage',
-          gcp: blobStorageGCP,
-          azure: blobStorageAzure,
+          gcp: blobStorageGCP.toFixed(fractionDigits),
+          azure: blobStorageAzure.toFixed(fractionDigits),
         },
         {
           name: 'Gen AI',
-          gcp: genAIGCP,
-          azure: genAIAzure,
+          gcp: genAIGCP.toFixed(fractionDigits),
+          azure: genAIAzure.toFixed(fractionDigits),
         },
       ];
 
