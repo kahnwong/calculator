@@ -1,7 +1,6 @@
 <template>
   <q-input
     class="q-pa-md"
-    filled
     dense
     :model-value="modelValue"
     @update:model-value="updateModelValue"
