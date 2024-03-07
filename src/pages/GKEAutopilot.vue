@@ -7,7 +7,7 @@
 
     <div class="q-pb-md"></div>
     <div class="row">
-      <div class="col-4">
+      <div class="col-2">
         <NumberInputComponent
           v-model.number="vCPU.value"
           :increment-value="vCPU.increment"
@@ -25,6 +25,7 @@
           ]"
         />
       </div>
+      <div class="col-1"></div>
       <div class="col-4 q-pl-lg">
         <q-table
           flat

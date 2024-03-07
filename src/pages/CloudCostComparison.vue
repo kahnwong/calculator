@@ -13,7 +13,7 @@
     </div>
     <div class="q-pb-md"></div>
     <div class="row">
-      <div class="col-4 q-pl-xs">
+      <div class="col-2 q-pl-sm q-pr-lg">
         <div class="fa-border">
           <div class="text-h4 text-bold q-pl-sm q-pt-sm">CaaS</div>
           <NumberInputComponent
@@ -58,8 +58,8 @@
           />
         </div>
       </div>
-      <div class="col-4">
-        <div class="row q-pl-md">
+      <div class="col-2 q-pr-lg">
+        <div class="row q-pb-md">
           <div class="fa-border">
             <div class="text-h4 text-bold q-pl-sm q-pt-sm">
               Container Storage
@@ -77,7 +77,7 @@
             />
           </div>
         </div>
-        <div class="row q-pt-md q-pl-md">
+        <div class="row ">
           <div class="fa-border">
             <div class="text-h4 text-bold q-pl-sm q-pt-sm">Blob Storage</div>
             <NumberInputComponent
@@ -94,7 +94,7 @@
           </div>
         </div>
       </div>
-      <div class="col-4 q-pl-md">
+      <div class="col-2">
         <div class="fa-border">
           <div class="text-h4 text-bold q-pl-sm q-pt-sm">Gen AI</div>
           <NumberInputComponent
@@ -215,9 +215,6 @@ export default defineComponent({
   method: {},
   computed: {
     finalValue() {
-      // constant
-      const fractionDigits = 3;
-
       // calculate
       let caasGCP = new cloudRun(
         this.vCPU.value,
