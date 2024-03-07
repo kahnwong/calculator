@@ -166,7 +166,7 @@ export default defineComponent({
       vCPU: {
         value: 2,
         increment: 1,
-        min: 0.5,
+        min: 1,
       },
       memory: {
         value: 2,
@@ -175,40 +175,40 @@ export default defineComponent({
       },
       executionTimePerRequestMS: {
         value: 500,
-        increment: 2,
-        min: 0.5,
+        increment: 100,
+        min: 100,
       },
       requestsPerMonth: {
         value: 100000,
-        increment: 2,
-        min: 0.5,
+        increment: 1000,
+        min: 1000,
       },
       // storage
       containerStorageGB: {
-        value: 1,
+        value: 5,
         increment: 2,
-        min: 0.5,
+        min: 5,
       },
       blobStorageGB: {
-        value: 1,
+        value: 5,
         increment: 2,
-        min: 0.5,
+        min: 5,
       },
       // gen ai
       genAIRequestsPerMonth: {
-        value: 1,
-        increment: 2,
-        min: 0.5,
+        value: 20000,
+        increment: 1000,
+        min: 1000,
       },
       genAIAvgInputChar: {
-        value: 1,
-        increment: 2,
-        min: 0.5,
+        value: 1000,
+        increment: 200,
+        min: 100,
       },
       genAIAvgOutputChar: {
-        value: 1,
-        increment: 2,
-        min: 0.5,
+        value: 2000,
+        increment: 200,
+        min: 100,
       },
     };
   },
