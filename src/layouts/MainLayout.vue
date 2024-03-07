@@ -31,6 +31,10 @@ const linksList = [
     title: 'GKE Autopilot: Spark Job',
     link: '/gke-autopilot-spark-job',
   },
+  {
+    title: 'Cloud Cost Comparison',
+    link: '/cloud-cost-comparison',
+  },
 ];
 
 export default defineComponent({
