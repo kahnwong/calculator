@@ -27,14 +27,14 @@
             ]"
           />
           <NumberInputComponent
-            v-model.number="executionTimeMS.value"
-            :increment-value="executionTimeMS.increment"
-            :min-value="executionTimeMS.min"
+            v-model.number="executionTimePerRequestMS.value"
+            :increment-value="executionTimePerRequestMS.increment"
+            :min-value="executionTimePerRequestMS.min"
             label="Execution time (ms)"
             :rules="[
               (val) =>
-                val >= executionTimeMS.min ||
-                `Minimum value is ${executionTimeMS.min}`,
+                val >= executionTimePerRequestMS.min ||
+                `Minimum value is ${executionTimePerRequestMS.min}`,
             ]"
           />
           <NumberInputComponent
@@ -128,7 +128,6 @@
     <div class="row q-pl-sm q-pt-lg">
       <div class="column">
         <div class="text-h4 text-bold q-pb-sm">Cost</div>
-
         <q-table
           flat
           bordered
@@ -137,6 +136,7 @@
           :columns="finalValue.columns"
           row-key="name"
           rows-per-page-options="0"
+          hide-bottom
         />
       </div>
     </div>
@@ -146,11 +146,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import NumberInputComponent from 'components/NumberInputComponent.vue';
-import {
-  generalPurpose,
-  scaleOutARM,
-  scaleOutX86,
-} from 'src/constants/GKEModel';
+import { cloudRun } from 'src/constants/GCPModel';
 
 export default defineComponent({
   name: 'HelpPage',
@@ -159,22 +155,22 @@ export default defineComponent({
     return {
       // caas
       vCPU: {
-        value: 1,
+        value: 2,
         increment: 1,
         min: 0.5,
       },
       memory: {
-        value: 1,
+        value: 2,
         increment: 2,
         min: 0.5,
       },
-      executionTimeMS: {
-        value: 1,
+      executionTimePerRequestMS: {
+        value: 500,
         increment: 2,
         min: 0.5,
       },
       requestsPerMonth: {
-        value: 1,
+        value: 100000,
         increment: 2,
         min: 0.5,
       },
@@ -213,6 +209,14 @@ export default defineComponent({
       // constant
       const fractionDigits = 3;
 
+      // calculate
+      let caasGCP = new cloudRun(
+        this.vCPU.value,
+        this.memory.value,
+        this.executionTimePerRequestMS.value,
+        this.requestsPerMonth.value
+      ).cost();
+
       // table data
       let columns = [
         {
@@ -237,14 +241,11 @@ export default defineComponent({
         },
       ];
 
-      // function perHourToPerMonth(perHour: number) {
-      //   return perHour * 24 * 30;
-      // }
       let rows = [
         // general purpose
         {
-          name: 'General Purpose',
-          gcp: 3,
+          name: 'CaaS',
+          gcp: caasGCP,
           azure: 10,
         },
       ];

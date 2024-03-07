@@ -34,6 +34,7 @@
           :columns="finalValue.columns"
           row-key="name"
           rows-per-page-options="0"
+          hide-bottom
         />
       </div>
     </div>
