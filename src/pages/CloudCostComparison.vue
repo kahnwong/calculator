@@ -5,7 +5,7 @@
 
     <div class="q-pb-md"></div>
     <div class="row">
-      <div class="col-4 q-pl-sd">
+      <div class="col-4 q-pl-xs">
         <div class="fa-border">
           <div class="text-h4 text-bold q-pl-sm q-pt-sm">CaaS</div>
           <NumberInputComponent
@@ -86,6 +86,44 @@
           </div>
         </div>
       </div>
+      <div class="col-4 q-pl-md">
+        <div class="fa-border">
+          <div class="text-h4 text-bold q-pl-sm q-pt-sm">Gen AI</div>
+          <NumberInputComponent
+            v-model.number="genAIRequestsPerMonth.value"
+            :increment-value="genAIRequestsPerMonth.increment"
+            :min-value="genAIRequestsPerMonth.min"
+            label="Requests per month"
+            :rules="[
+              (val) =>
+                val >= genAIRequestsPerMonth.min ||
+                `Minimum value is ${genAIRequestsPerMonth.min}`,
+            ]"
+          />
+          <NumberInputComponent
+            v-model.number="genAIAvgInputChar.value"
+            :increment-value="genAIAvgInputChar.increment"
+            :min-value="genAIAvgInputChar.min"
+            label="Average input character"
+            :rules="[
+              (val) =>
+                val >= genAIAvgInputChar.min ||
+                `Minimum value is ${genAIAvgInputChar.min}`,
+            ]"
+          />
+          <NumberInputComponent
+            v-model.number="genAIAvgOutputChar.value"
+            :increment-value="genAIAvgOutputChar.increment"
+            :min-value="genAIAvgOutputChar.min"
+            label="Average output character"
+            :rules="[
+              (val) =>
+                val >= genAIAvgOutputChar.min ||
+                `Minimum value is ${genAIAvgOutputChar.min}`,
+            ]"
+          />
+        </div>
+      </div>
     </div>
   </q-page>
 </template>
@@ -120,12 +158,29 @@ export default defineComponent({
         increment: 2,
         min: 0.5,
       },
+      // storage
       containerStorageGB: {
         value: 1,
         increment: 2,
         min: 0.5,
       },
       blobStorageGB: {
+        value: 1,
+        increment: 2,
+        min: 0.5,
+      },
+      // gen ai
+      genAIRequestsPerMonth: {
+        value: 1,
+        increment: 2,
+        min: 0.5,
+      },
+      genAIAvgInputChar: {
+        value: 1,
+        increment: 2,
+        min: 0.5,
+      },
+      genAIAvgOutputChar: {
         value: 1,
         increment: 2,
         min: 0.5,
