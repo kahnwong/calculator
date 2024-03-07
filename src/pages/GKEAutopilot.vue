@@ -33,6 +33,7 @@
           :rows="finalValue.rows"
           :columns="finalValue.columns"
           row-key="name"
+          rows-per-page-options="0"
         />
       </div>
     </div>
@@ -81,11 +82,18 @@ export default defineComponent({
         memory_three_year_commitment: 0.0033401,
       };
 
-      // base price
-      function perHourToPerMonth(perHour: number) {
-        return perHour * 24 * 30;
-      }
+      let scaleOutARM = {
+        cpu_regular: 0.0439,
+        memory_regular: 0.0048583,
+        cpu_spot: 0.0132,
+        memory_spot: 0.0014575,
+        cpu_one_year_commitment: 0.03512,
+        memory_one_year_commitment: 0.0038866,
+        cpu_three_year_commitment: 0.024145,
+        memory_three_year_commitment: 0.0026721,
+      };
 
+      // base price
       let generalPurposeRegularPerHour =
         this.vCPU.value * generalPurpose.cpu_regular +
         this.memory.value * generalPurpose.memory_regular;
@@ -98,6 +106,19 @@ export default defineComponent({
       let generalPurposeThreeYearCommitmentPerHour =
         this.vCPU.value * generalPurpose.cpu_three_year_commitment +
         this.memory.value * generalPurpose.memory_three_year_commitment;
+
+      let scaleOutARMRegularPerHour =
+        this.vCPU.value * scaleOutARM.cpu_regular +
+        this.memory.value * scaleOutARM.memory_regular;
+      let scaleOutARMSpotPerHour =
+        this.vCPU.value * scaleOutARM.cpu_spot +
+        this.memory.value * scaleOutARM.memory_spot;
+      let scaleOutARMOneYearCommitmentPerHour =
+        this.vCPU.value * scaleOutARM.cpu_one_year_commitment +
+        this.memory.value * scaleOutARM.memory_one_year_commitment;
+      let scaleOutARMThreeYearCommitmentPerHour =
+        this.vCPU.value * scaleOutARM.cpu_three_year_commitment +
+        this.memory.value * scaleOutARM.memory_three_year_commitment;
 
       // constant
       const fractionDigits = 3;
@@ -113,7 +134,6 @@ export default defineComponent({
             return row.name;
           },
           format: (val) => `${val}`,
-          sortable: true,
         },
         {
           name: 'pricing',
@@ -124,17 +144,19 @@ export default defineComponent({
           name: 'pricePerHour',
           label: 'Price / Hour',
           field: 'pricePerHour',
-          sortable: true,
         },
         {
           name: 'pricePerMonth',
           label: 'Price / Month',
           field: 'pricePerMonth',
-          sortable: true,
         },
       ];
 
+      function perHourToPerMonth(perHour: number) {
+        return perHour * 24 * 30;
+      }
       let rows = [
+        // general purpose
         {
           name: 'General Purpose',
           pricing: 'Regular',
@@ -167,6 +189,41 @@ export default defineComponent({
             generalPurposeThreeYearCommitmentPerHour.toFixed(fractionDigits),
           pricePerMonth: perHourToPerMonth(
             generalPurposeThreeYearCommitmentPerHour
+          ).toFixed(fractionDigits),
+        },
+        // scale-out ARM
+        {
+          name: 'Scale-Out ARM',
+          pricing: 'Regular',
+          pricePerHour: scaleOutARMRegularPerHour.toFixed(fractionDigits),
+          pricePerMonth: perHourToPerMonth(scaleOutARMRegularPerHour).toFixed(
+            fractionDigits
+          ),
+        },
+        {
+          name: 'Scale-Out ARM',
+          pricing: 'Spot',
+          pricePerHour: scaleOutARMSpotPerHour.toFixed(fractionDigits),
+          pricePerMonth: perHourToPerMonth(scaleOutARMSpotPerHour).toFixed(
+            fractionDigits
+          ),
+        },
+        {
+          name: 'Scale-Out ARM',
+          pricing: '1 Year Commitment',
+          pricePerHour:
+            scaleOutARMOneYearCommitmentPerHour.toFixed(fractionDigits),
+          pricePerMonth: perHourToPerMonth(
+            scaleOutARMOneYearCommitmentPerHour
+          ).toFixed(fractionDigits),
+        },
+        {
+          name: 'Scale-Out ARM',
+          pricing: '3 Year Commitment',
+          pricePerHour:
+            scaleOutARMThreeYearCommitmentPerHour.toFixed(fractionDigits),
+          pricePerMonth: perHourToPerMonth(
+            scaleOutARMThreeYearCommitmentPerHour
           ).toFixed(fractionDigits),
         },
       ];
