@@ -112,16 +112,20 @@ export default defineComponent({
       // one month has 174 work hours
       let avgSalaryPerHour = this.avgAttendeesSalaryPerYear.value / 12 / 174;
 
-      let costPerHour =
+      let costPerMeeting =
         this.attendees.value *
         this.meetingDurationHours.value *
         this.timesPerWeek.value *
         avgSalaryPerHour;
 
       return {
-        costPerMeeting: Math.round(costPerHour),
-        costPerMinute: Math.round(costPerHour / 60),
-        costPerYear: Math.round(costPerHour * 52),
+        costPerMeeting: Math.round(costPerMeeting),
+        costPerMinute: Math.round(
+          costPerMeeting / this.meetingDurationHours.value / 60
+        ),
+        costPerYear: Math.round(
+          costPerMeeting * this.timesPerWeek.value * 52.1429
+        ),
       };
     },
   },
