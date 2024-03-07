@@ -5,8 +5,8 @@
 
     <div class="q-pb-md"></div>
     <div class="row">
-      <div class="col-4">
-        <div class="fa-border q-pa-lg">
+      <div class="col-4 q-pl-sd">
+        <div class="fa-border">
           <div class="text-h4 text-bold q-pl-sm q-pt-sm">CaaS</div>
           <NumberInputComponent
             v-model.number="vCPU.value"
@@ -27,14 +27,14 @@
             ]"
           />
           <NumberInputComponent
-            v-model.number="executionTimeMs.value"
-            :increment-value="executionTimeMs.increment"
-            :min-value="executionTimeMs.min"
+            v-model.number="executionTimeMS.value"
+            :increment-value="executionTimeMS.increment"
+            :min-value="executionTimeMS.min"
             label="Execution time (ms)"
             :rules="[
               (val) =>
-                val >= executionTimeMs.min ||
-                `Minimum value is ${executionTimeMs.min}`,
+                val >= executionTimeMS.min ||
+                `Minimum value is ${executionTimeMS.min}`,
             ]"
           />
           <NumberInputComponent
@@ -48,6 +48,42 @@
                 `Minimum value is ${requestsPerMonth.min}`,
             ]"
           />
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="row q-pl-md">
+          <div class="fa-border">
+            <div class="text-h4 text-bold q-pl-sm q-pt-sm">
+              Container Storage
+            </div>
+            <NumberInputComponent
+              v-model.number="containerStorageGB.value"
+              :increment-value="containerStorageGB.increment"
+              :min-value="containerStorageGB.min"
+              label="Container storage (GB)"
+              :rules="[
+                (val) =>
+                  val >= containerStorageGB.min ||
+                  `Minimum value is ${containerStorageGB.min}`,
+              ]"
+            />
+          </div>
+        </div>
+        <div class="row q-pt-md q-pl-md">
+          <div class="fa-border">
+            <div class="text-h4 text-bold q-pl-sm q-pt-sm">Blob Storage</div>
+            <NumberInputComponent
+              v-model.number="blobStorageGB.value"
+              :increment-value="blobStorageGB.increment"
+              :min-value="blobStorageGB.min"
+              label="Blob storage (GB)"
+              :rules="[
+                (val) =>
+                  val >= blobStorageGB.min ||
+                  `Minimum value is ${blobStorageGB.min}`,
+              ]"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -74,12 +110,22 @@ export default defineComponent({
         increment: 2,
         min: 0.5,
       },
-      executionTimeMs: {
+      executionTimeMS: {
         value: 1,
         increment: 2,
         min: 0.5,
       },
       requestsPerMonth: {
+        value: 1,
+        increment: 2,
+        min: 0.5,
+      },
+      containerStorageGB: {
+        value: 1,
+        increment: 2,
+        min: 0.5,
+      },
+      blobStorageGB: {
         value: 1,
         increment: 2,
         min: 0.5,
