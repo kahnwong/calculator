@@ -13,7 +13,7 @@
     </div>
     <div class="q-pb-md"></div>
     <div class="row">
-      <div class="col-3 q-pl-sm q-pr-lg">
+      <div class="col-4.5 q-pl-sm q-pr-lg">
         <div class="fa-border">
           <div class="text-h4 text-bold q-pl-sm q-pt-sm">CaaS</div>
           <NumberInputComponent
@@ -58,7 +58,7 @@
           />
         </div>
       </div>
-      <div class="col-3 q-pr-lg">
+      <div class="col-3.5 q-pr-lg">
         <div class="row q-pb-md">
           <div class="fa-border">
             <div class="text-h4 text-bold q-pl-sm q-pt-sm">
@@ -68,7 +68,7 @@
               v-model.number="containerStorageGB.value"
               :increment-value="containerStorageGB.increment"
               :min-value="containerStorageGB.min"
-              label="Container storage (GB)"
+              label="Storage (GB)"
               :rules="[
                 (val) =>
                   val >= containerStorageGB.min ||
@@ -84,7 +84,7 @@
               v-model.number="blobStorageGB.value"
               :increment-value="blobStorageGB.increment"
               :min-value="blobStorageGB.min"
-              label="Blob storage (GB)"
+              label="Storage (GB)"
               :rules="[
                 (val) =>
                   val >= blobStorageGB.min ||
@@ -94,7 +94,7 @@
           </div>
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-3.5">
         <div class="fa-border">
           <div class="text-h4 text-bold q-pl-sm q-pt-sm">Gen AI</div>
           <NumberInputComponent
