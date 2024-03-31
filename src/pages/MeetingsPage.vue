@@ -121,10 +121,10 @@ export default defineComponent({
       return {
         costPerMeeting: Math.round(costPerMeeting),
         costPerMinute: Math.round(
-          costPerMeeting / this.meetingDurationHours.value / 60
+          costPerMeeting / this.meetingDurationHours.value / 60,
         ),
         costPerYear: Math.round(
-          costPerMeeting * this.timesPerWeek.value * 52.1429
+          costPerMeeting * this.timesPerWeek.value * 52.1429,
         ),
       };
     },

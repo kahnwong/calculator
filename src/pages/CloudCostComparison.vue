@@ -230,20 +230,20 @@ export default defineComponent({
         this.vCPU.value,
         this.memory.value,
         this.executionTimePerRequestMS.value,
-        this.requestsPerMonth.value
+        this.requestsPerMonth.value,
       ).cost();
       let caasAzure = new containerApps(
         this.vCPU.value,
         this.memory.value,
         this.executionTimePerRequestMS.value,
-        this.requestsPerMonth.value
+        this.requestsPerMonth.value,
       ).cost();
 
       let containerRegistryGCP = new artifactRegistry(
-        this.containerStorageGB.value
+        this.containerStorageGB.value,
       ).cost();
       let containerRegistryAzure = new containerRegistry(
-        this.containerStorageGB.value
+        this.containerStorageGB.value,
       ).cost();
 
       let blobStorageGCP = new cloudStorage(this.blobStorageGB.value).cost();
@@ -252,12 +252,12 @@ export default defineComponent({
       let genAIGCP = new genAILanguage(
         this.genAIRequestsPerMonth.value,
         this.genAIAvgInputChar.value,
-        this.genAIAvgOutputChar.value
+        this.genAIAvgOutputChar.value,
       ).cost();
       let genAIAzure = new openAI(
         this.genAIRequestsPerMonth.value,
         this.genAIAvgInputChar.value,
-        this.genAIAvgOutputChar.value
+        this.genAIAvgOutputChar.value,
       ).cost();
 
       // constant

@@ -24,7 +24,7 @@ export class cloudRun {
     vCPURequest: number,
     memoryRequest: number,
     executionTimePerRequestMS: number,
-    requestsPerMonth: number
+    requestsPerMonth: number,
   ) {
     this.vCPURequest = vCPURequest;
     this.memoryRequest = memoryRequest;
@@ -90,7 +90,7 @@ export class genAILanguage {
   constructor(
     requestsPerMonth: number,
     avgInputCharacter: number,
-    avgOutputCharacter: number
+    avgOutputCharacter: number,
   ) {
     this.requestsPerMonth = requestsPerMonth;
     this.avgInputCharacter = avgInputCharacter;

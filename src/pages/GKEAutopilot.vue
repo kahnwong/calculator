@@ -153,7 +153,7 @@ export default defineComponent({
           pricing: 'Regular',
           pricePerHour: generalPurposeRegularPerHour.toFixed(fractionDigits),
           pricePerMonth: perHourToPerMonth(
-            generalPurposeRegularPerHour
+            generalPurposeRegularPerHour,
           ).toFixed(fractionDigits),
         },
         {
@@ -161,7 +161,7 @@ export default defineComponent({
           pricing: 'Spot',
           pricePerHour: generalPurposeSpotPerHour.toFixed(fractionDigits),
           pricePerMonth: perHourToPerMonth(generalPurposeSpotPerHour).toFixed(
-            fractionDigits
+            fractionDigits,
           ),
         },
         {
@@ -170,7 +170,7 @@ export default defineComponent({
           pricePerHour:
             generalPurposeOneYearCommitmentPerHour.toFixed(fractionDigits),
           pricePerMonth: perHourToPerMonth(
-            generalPurposeOneYearCommitmentPerHour
+            generalPurposeOneYearCommitmentPerHour,
           ).toFixed(fractionDigits),
         },
         {
@@ -179,7 +179,7 @@ export default defineComponent({
           pricePerHour:
             generalPurposeThreeYearCommitmentPerHour.toFixed(fractionDigits),
           pricePerMonth: perHourToPerMonth(
-            generalPurposeThreeYearCommitmentPerHour
+            generalPurposeThreeYearCommitmentPerHour,
           ).toFixed(fractionDigits),
         },
         // scale-out ARM
@@ -188,7 +188,7 @@ export default defineComponent({
           pricing: 'Regular',
           pricePerHour: scaleOutARMRegularPerHour.toFixed(fractionDigits),
           pricePerMonth: perHourToPerMonth(scaleOutARMRegularPerHour).toFixed(
-            fractionDigits
+            fractionDigits,
           ),
         },
         {
@@ -196,7 +196,7 @@ export default defineComponent({
           pricing: 'Spot',
           pricePerHour: scaleOutARMSpotPerHour.toFixed(fractionDigits),
           pricePerMonth: perHourToPerMonth(scaleOutARMSpotPerHour).toFixed(
-            fractionDigits
+            fractionDigits,
           ),
         },
         {
@@ -205,7 +205,7 @@ export default defineComponent({
           pricePerHour:
             scaleOutARMOneYearCommitmentPerHour.toFixed(fractionDigits),
           pricePerMonth: perHourToPerMonth(
-            scaleOutARMOneYearCommitmentPerHour
+            scaleOutARMOneYearCommitmentPerHour,
           ).toFixed(fractionDigits),
         },
         {
@@ -214,7 +214,7 @@ export default defineComponent({
           pricePerHour:
             scaleOutARMThreeYearCommitmentPerHour.toFixed(fractionDigits),
           pricePerMonth: perHourToPerMonth(
-            scaleOutARMThreeYearCommitmentPerHour
+            scaleOutARMThreeYearCommitmentPerHour,
           ).toFixed(fractionDigits),
         },
         // scale-out x86
@@ -223,7 +223,7 @@ export default defineComponent({
           pricing: 'Regular',
           pricePerHour: scaleOutX86RegularPerHour.toFixed(fractionDigits),
           pricePerMonth: perHourToPerMonth(scaleOutX86RegularPerHour).toFixed(
-            fractionDigits
+            fractionDigits,
           ),
         },
         {
@@ -231,7 +231,7 @@ export default defineComponent({
           pricing: 'Spot',
           pricePerHour: scaleOutX86SpotPerHour.toFixed(fractionDigits),
           pricePerMonth: perHourToPerMonth(scaleOutX86SpotPerHour).toFixed(
-            fractionDigits
+            fractionDigits,
           ),
         },
         {
@@ -240,7 +240,7 @@ export default defineComponent({
           pricePerHour:
             scaleOutX86OneYearCommitmentPerHour.toFixed(fractionDigits),
           pricePerMonth: perHourToPerMonth(
-            scaleOutX86OneYearCommitmentPerHour
+            scaleOutX86OneYearCommitmentPerHour,
           ).toFixed(fractionDigits),
         },
         {
@@ -249,7 +249,7 @@ export default defineComponent({
           pricePerHour:
             scaleOutX86ThreeYearCommitmentPerHour.toFixed(fractionDigits),
           pricePerMonth: perHourToPerMonth(
-            scaleOutX86ThreeYearCommitmentPerHour
+            scaleOutX86ThreeYearCommitmentPerHour,
           ).toFixed(fractionDigits),
         },
       ];
