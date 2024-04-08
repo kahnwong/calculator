@@ -22,7 +22,7 @@
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
     "eslint": "^8.11.0",
-    "eslint-plugin-vue": "^9.0.0",
+    "eslint-plugin-vue": "^9.24.1",
     "eslint-config-prettier": "^9.1.0",
     "prettier": "^3.2.5",
     "@types/node": "^12.20.21",
