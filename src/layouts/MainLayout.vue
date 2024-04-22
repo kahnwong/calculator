@@ -1,11 +1,24 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered :breakpoint="10">
-      <q-list>
-        <q-item-label header> Apps </q-item-label>
+  <q-layout view="hHh Lpr lFf">
+    <q-header elevated class="bg-secondary">
+      <q-toolbar>
+        <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
+        <q-toolbar-title>Calculator</q-toolbar-title>
+      </q-toolbar>
+    </q-header>
 
-        <Apps v-for="link in apps" :key="link.title" v-bind="link" />
-      </q-list>
+    <q-drawer
+      v-model="drawer"
+      show-if-above
+      bordered
+      :width="200"
+      :breakpoint="500"
+    >
+      <q-scroll-area class="fit">
+        <q-list padding class="menu-list">
+          <Apps v-for="link in apps" :key="link.title" v-bind="link" />
+        </q-list>
+      </q-scroll-area>
     </q-drawer>
 
     <q-page-container>
@@ -45,14 +58,9 @@ export default defineComponent({
   },
 
   setup() {
-    const leftDrawerOpen = ref(false);
-
     return {
       apps: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
+      drawer: ref(false),
     };
   },
 });
