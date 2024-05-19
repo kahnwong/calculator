@@ -1,0 +1,255 @@
+<template>
+  <q-page class="q-pa-lg">
+    <div class="q-pt-lg"></div>
+    <div class="text-h2 text-bold q-pb-lg q-pt-lg">Project Quotation</div>
+
+    <div class="q-pb-md"></div>
+    <div class="row">
+      <div class="col-4.5 q-pl-sm q-pr-lg">
+        <div class="fa-border">
+          <div class="text-h4 text-bold q-pl-sm q-pt-sm">Project Manager</div>
+          <NumberInputComponent
+            v-model.number="projectManagerSalary.value"
+            :increment-value="projectManagerSalary.increment"
+            :min-value="projectManagerSalary.min"
+            label="Salary"
+            :rules="[
+              (val) =>
+                val >= projectManagerSalary.min ||
+                `Minimum value is ${projectManagerSalary.min}`,
+            ]"
+          />
+          <NumberInputComponent
+            v-model.number="projectManagerMandayRatio.value"
+            :increment-value="projectManagerMandayRatio.increment"
+            :min-value="projectManagerMandayRatio.min"
+            label="Manday Ratio"
+            :rules="[
+              (val) =>
+                val >= projectManagerMandayRatio.min ||
+                `Minimum value is ${projectManagerMandayRatio.min}`,
+            ]"
+          />
+          <NumberInputComponent
+            v-model.number="projectManagerMandayWeeks.value"
+            :increment-value="projectManagerMandayWeeks.increment"
+            :min-value="projectManagerMandayWeeks.min"
+            label="Manday (Weeks)"
+            :rules="[
+              (val) =>
+                val >= projectManagerMandayWeeks.min ||
+                `Minimum value is ${projectManagerMandayWeeks.min}`,
+            ]"
+          />
+        </div>
+      </div>
+      <div class="col-3.5 q-pr-lg">
+        <div class="row q-pb-md">
+          <div class="fa-border">
+            <div class="text-h4 text-bold q-pl-sm q-pt-sm">
+              Container Storage
+            </div>
+            <NumberInputComponent
+              v-model.number="containerStorageGB.value"
+              :increment-value="containerStorageGB.increment"
+              :min-value="containerStorageGB.min"
+              label="Storage (GB)"
+              :rules="[
+                (val) =>
+                  val >= containerStorageGB.min ||
+                  `Minimum value is ${containerStorageGB.min}`,
+              ]"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="fa-border">
+            <div class="text-h4 text-bold q-pl-sm q-pt-sm">Blob Storage</div>
+            <NumberInputComponent
+              v-model.number="blobStorageGB.value"
+              :increment-value="blobStorageGB.increment"
+              :min-value="blobStorageGB.min"
+              label="Storage (GB)"
+              :rules="[
+                (val) =>
+                  val >= blobStorageGB.min ||
+                  `Minimum value is ${blobStorageGB.min}`,
+              ]"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-3.5">
+        <div class="fa-border">
+          <div class="text-h4 text-bold q-pl-sm q-pt-sm">Gen AI</div>
+          <NumberInputComponent
+            v-model.number="genAIRequestsPerMonth.value"
+            :increment-value="genAIRequestsPerMonth.increment"
+            :min-value="genAIRequestsPerMonth.min"
+            label="Requests per month"
+            :rules="[
+              (val) =>
+                val >= genAIRequestsPerMonth.min ||
+                `Minimum value is ${genAIRequestsPerMonth.min}`,
+            ]"
+          />
+          <NumberInputComponent
+            v-model.number="genAIAvgInputChar.value"
+            :increment-value="genAIAvgInputChar.increment"
+            :min-value="genAIAvgInputChar.min"
+            label="Average input character"
+            :rules="[
+              (val) =>
+                val >= genAIAvgInputChar.min ||
+                `Minimum value is ${genAIAvgInputChar.min}`,
+            ]"
+          />
+          <NumberInputComponent
+            v-model.number="genAIAvgOutputChar.value"
+            :increment-value="genAIAvgOutputChar.increment"
+            :min-value="genAIAvgOutputChar.min"
+            label="Average output character"
+            :rules="[
+              (val) =>
+                val >= genAIAvgOutputChar.min ||
+                `Minimum value is ${genAIAvgOutputChar.min}`,
+            ]"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row q-pl-sm q-pt-lg">
+      <div class="column">
+        <div class="text-h4 text-bold q-pb-sm">Cost</div>
+        <q-table
+          flat
+          bordered
+          dense
+          :rows="finalValue.rows"
+          :columns="finalValue.columns"
+          row-key="name"
+          rows-per-page-options="0"
+          hide-bottom
+        />
+      </div>
+    </div>
+  </q-page>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import NumberInputComponent from 'components/NumberInputComponent.vue';
+import { cloudRun } from 'src/constants/GcpModel';
+import { containerApps } from 'src/constants/AzureModel';
+import { quotationProjectManager } from 'src/constants/QuotationModel';
+
+export default defineComponent({
+  name: 'HelpPage',
+  components: { NumberInputComponent },
+  data() {
+    return {
+      // PM
+      projectManagerSalary: {
+        value: 130000,
+        increment: 10000,
+        min: 100000,
+      },
+      projectManagerMandayRatio: {
+        value: 0.3,
+        increment: 0.1,
+        min: 0.2,
+      },
+      projectManagerMandayWeeks: {
+        value: 4,
+        increment: 1,
+        min: 2,
+      },
+      ////////////////////////////////////////
+      memory: {
+        value: 2,
+        increment: 2,
+        min: 0.5,
+      },
+      executionTimePerRequestMS: {
+        value: 500,
+        increment: 100,
+        min: 100,
+      },
+      requestsPerMonth: {
+        value: 100000,
+        increment: 1000,
+        min: 1000,
+      },
+      // storage
+      containerStorageGB: {
+        value: 5,
+        increment: 2,
+        min: 5,
+      },
+      blobStorageGB: {
+        value: 5,
+        increment: 2,
+        min: 5,
+      },
+      // gen ai
+      genAIRequestsPerMonth: {
+        value: 20000,
+        increment: 1000,
+        min: 1000,
+      },
+      genAIAvgInputChar: {
+        value: 1000,
+        increment: 200,
+        min: 100,
+      },
+      genAIAvgOutputChar: {
+        value: 2000,
+        increment: 200,
+        min: 100,
+      },
+    };
+  },
+  method: {},
+  computed: {
+    finalValue() {
+      // calculate
+      let costProjectManager = new quotationProjectManager(
+        this.projectManagerSalary.value,
+        this.projectManagerMandayRatio.value,
+        this.projectManagerMandayWeeks.value,
+      ).cost();
+
+      // table data
+      let columns = [
+        {
+          name: 'name',
+          required: true,
+          label: 'Role',
+          align: 'left',
+          field: (row) => {
+            return row.name;
+          },
+          format: (val) => `${val}`,
+        },
+        {
+          name: 'cost',
+          label: 'Cost',
+          field: 'cost',
+        },
+      ];
+
+      let rows = [
+        {
+          name: 'Project Manager',
+          cost: Math.round(costProjectManager),
+        },
+      ];
+
+      return {
+        columns: columns,
+        rows: rows,
+      };
+    },
+  },
+});
+</script>

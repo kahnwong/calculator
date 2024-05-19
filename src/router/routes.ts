@@ -19,6 +19,10 @@ const routes: RouteRecordRaw[] = [
         path: '/cloud-cost-comparison',
         component: () => import('pages/CloudCostComparison.vue'),
       },
+      {
+        path: '/project-quotation',
+        component: () => import('pages/ProjectQuotation.vue'),
+      },
     ],
   },
 

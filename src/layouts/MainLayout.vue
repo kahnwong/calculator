@@ -48,6 +48,10 @@ const linksList = [
     title: 'Cloud Cost Comparison',
     link: '/cloud-cost-comparison',
   },
+  {
+    title: 'Project Quotation',
+    link: '/project-quotation',
+  },
 ];
 
 export default defineComponent({
