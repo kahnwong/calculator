@@ -46,34 +46,38 @@
       <div class="col-3.5 q-pr-lg">
         <div class="row q-pb-md">
           <div class="fa-border">
-            <div class="text-h4 text-bold q-pl-sm q-pt-sm">
-              Container Storage
-            </div>
+            <div class="text-h4 text-bold q-pl-sm q-pt-sm">Technical Lead</div>
             <NumberInputComponent
-              v-model.number="containerStorageGB.value"
-              :increment-value="containerStorageGB.increment"
-              :min-value="containerStorageGB.min"
-              label="Storage (GB)"
+              v-model.number="technicalLeadSalary.value"
+              :increment-value="technicalLeadSalary.increment"
+              :min-value="technicalLeadSalary.min"
+              label="Salary"
               :rules="[
                 (val) =>
-                  val >= containerStorageGB.min ||
-                  `Minimum value is ${containerStorageGB.min}`,
+                  val >= technicalLeadSalary.min ||
+                  `Minimum value is ${technicalLeadSalary.min}`,
               ]"
             />
-          </div>
-        </div>
-        <div class="row">
-          <div class="fa-border">
-            <div class="text-h4 text-bold q-pl-sm q-pt-sm">Blob Storage</div>
             <NumberInputComponent
-              v-model.number="blobStorageGB.value"
-              :increment-value="blobStorageGB.increment"
-              :min-value="blobStorageGB.min"
-              label="Storage (GB)"
+              v-model.number="technicalLeadMandayRatio.value"
+              :increment-value="technicalLeadMandayRatio.increment"
+              :min-value="technicalLeadMandayRatio.min"
+              label="Manday Ratio"
               :rules="[
                 (val) =>
-                  val >= blobStorageGB.min ||
-                  `Minimum value is ${blobStorageGB.min}`,
+                  val >= technicalLeadMandayRatio.min ||
+                  `Minimum value is ${technicalLeadMandayRatio.min}`,
+              ]"
+            />
+            <NumberInputComponent
+              v-model.number="technicalLeadMandayWeeks.value"
+              :increment-value="technicalLeadMandayWeeks.increment"
+              :min-value="technicalLeadMandayWeeks.min"
+              label="Manday (Weeks)"
+              :rules="[
+                (val) =>
+                  val >= technicalLeadMandayWeeks.min ||
+                  `Minimum value is ${technicalLeadMandayWeeks.min}`,
               ]"
             />
           </div>
@@ -164,6 +168,22 @@ export default defineComponent({
         increment: 1,
         min: 2,
       },
+      // Technical Lead
+      technicalLeadSalary: {
+        value: 130000,
+        increment: 10000,
+        min: 100000,
+      },
+      technicalLeadMandayRatio: {
+        value: 0.3,
+        increment: 0.1,
+        min: 0.2,
+      },
+      technicalLeadMandayWeeks: {
+        value: 4,
+        increment: 1,
+        min: 2,
+      },
       ////////////////////////////////////////
       memory: {
         value: 2,
@@ -218,6 +238,11 @@ export default defineComponent({
         this.projectManagerMandayRatio.value,
         this.projectManagerMandayWeeks.value,
       ).cost();
+      let costTechnicalLead = new quotationProjectManager(
+        this.technicalLeadSalary.value,
+        this.technicalLeadMandayRatio.value,
+        this.technicalLeadMandayWeeks.value,
+      ).cost();
 
       // table data
       let columns = [
@@ -242,6 +267,10 @@ export default defineComponent({
         {
           name: 'Project Manager',
           cost: Math.round(costProjectManager),
+        },
+        {
+          name: 'Technical Lead',
+          cost: Math.round(costTechnicalLead),
         },
       ];
 
