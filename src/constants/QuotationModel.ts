@@ -25,16 +25,18 @@ export class quotationProjectManager {
 
 export class quotationDev {
   salary = 100000;
+  persons = 1;
   mandayWeeks = 4;
 
-  constructor(salary: number, mandayWeeks: number) {
+  constructor(salary: number, persons: number, mandayWeeks: number) {
     this.salary = salary;
+    this.persons = persons;
     this.mandayWeeks = mandayWeeks;
   }
 
   cost() {
     const costManday = this.salary / 30;
-    const days = this.mandayWeeks * 7;
+    const days = this.mandayWeeks * this.persons * 7;
 
     return costManday * days;
   }

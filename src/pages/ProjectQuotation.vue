@@ -83,7 +83,7 @@
           </div>
         </div>
       </div>
-      <div class="col-3.5">
+      <div class="col-3.5 q-pr-lg">
         <div class="fa-border">
           <div class="text-h4 text-bold q-pl-sm q-pt-sm">Data Engineer</div>
           <NumberInputComponent
@@ -98,6 +98,17 @@
             ]"
           />
           <NumberInputComponent
+            v-model.number="dataEngineerPersons.value"
+            :increment-value="dataEngineerPersons.increment"
+            :min-value="dataEngineerPersons.min"
+            label="Persons"
+            :rules="[
+              (val) =>
+                val >= dataEngineerPersons.min ||
+                `Minimum value is ${dataEngineerPersons.min}`,
+            ]"
+          />
+          <NumberInputComponent
             v-model.number="dataEngineerMandayWeeks.value"
             :increment-value="dataEngineerMandayWeeks.increment"
             :min-value="dataEngineerMandayWeeks.min"
@@ -106,6 +117,44 @@
               (val) =>
                 val >= dataEngineerMandayWeeks.min ||
                 `Minimum value is ${dataEngineerMandayWeeks.min}`,
+            ]"
+          />
+        </div>
+      </div>
+      <div class="col-3.5">
+        <div class="fa-border">
+          <div class="text-h4 text-bold q-pl-sm q-pt-sm">Data Scientist</div>
+          <NumberInputComponent
+            v-model.number="dataScientistSalary.value"
+            :increment-value="dataScientistSalary.increment"
+            :min-value="dataScientistSalary.min"
+            label="Salary"
+            :rules="[
+              (val) =>
+                val >= dataScientistSalary.min ||
+                `Minimum value is ${dataScientistSalary.min}`,
+            ]"
+          />
+          <NumberInputComponent
+            v-model.number="dataScientistPersons.value"
+            :increment-value="dataScientistPersons.increment"
+            :min-value="dataScientistPersons.min"
+            label="Persons"
+            :rules="[
+              (val) =>
+                val >= dataScientistPersons.min ||
+                `Minimum value is ${dataScientistPersons.min}`,
+            ]"
+          />
+          <NumberInputComponent
+            v-model.number="dataScientistMandayWeeks.value"
+            :increment-value="dataScientistMandayWeeks.increment"
+            :min-value="dataScientistMandayWeeks.min"
+            label="Manday (Weeks)"
+            :rules="[
+              (val) =>
+                val >= dataScientistMandayWeeks.min ||
+                `Minimum value is ${dataScientistMandayWeeks.min}`,
             ]"
           />
         </div>
@@ -180,53 +229,31 @@ export default defineComponent({
         increment: 10000,
         min: 100000,
       },
+      dataEngineerPersons: {
+        value: 1,
+        increment: 1,
+        min: 0,
+      },
       dataEngineerMandayWeeks: {
         value: 4,
         increment: 1,
         min: 0,
       },
-      ////////////////////////////////////////
-      memory: {
-        value: 2,
-        increment: 2,
-        min: 0.5,
+      // Data Scientist
+      dataScientistSalary: {
+        value: 60000,
+        increment: 10000,
+        min: 100000,
       },
-      executionTimePerRequestMS: {
-        value: 500,
-        increment: 100,
-        min: 100,
+      dataScientistPersons: {
+        value: 1,
+        increment: 1,
+        min: 0,
       },
-      requestsPerMonth: {
-        value: 100000,
-        increment: 1000,
-        min: 1000,
-      },
-      // storage
-      containerStorageGB: {
-        value: 5,
-        increment: 2,
-        min: 5,
-      },
-      blobStorageGB: {
-        value: 5,
-        increment: 2,
-        min: 5,
-      },
-      // gen ai
-      genAIRequestsPerMonth: {
-        value: 20000,
-        increment: 1000,
-        min: 1000,
-      },
-      genAIAvgInputChar: {
-        value: 1000,
-        increment: 200,
-        min: 100,
-      },
-      genAIAvgOutputChar: {
-        value: 2000,
-        increment: 200,
-        min: 100,
+      dataScientistMandayWeeks: {
+        value: 4,
+        increment: 1,
+        min: 0,
       },
     };
   },
@@ -246,7 +273,13 @@ export default defineComponent({
       ).cost();
       let costdataEngineer = new quotationDev(
         this.dataEngineerSalary.value,
+        this.dataEngineerPersons.value,
         this.dataEngineerMandayWeeks.value,
+      ).cost();
+      let costdataScientist = new quotationDev(
+        this.dataScientistSalary.value,
+        this.dataScientistPersons.value,
+        this.dataScientistMandayWeeks.value,
       ).cost();
 
       // table data
@@ -281,11 +314,29 @@ export default defineComponent({
           name: 'Data Engineer',
           cost: Math.round(costdataEngineer).toLocaleString(),
         },
+        {
+          name: 'Data Scientist',
+          cost: Math.round(costdataScientist).toLocaleString(),
+        },
         // total
         {
           name: 'Total',
           cost: Math.round(
-            costProjectManager + costTechnicalLead + costdataEngineer,
+            costProjectManager +
+              costTechnicalLead +
+              costdataEngineer +
+              costdataScientist,
+          ).toLocaleString(),
+        },
+        {
+          name: 'Total with Adjustments',
+          cost: Math.round(
+            (costProjectManager +
+              costTechnicalLead +
+              costdataEngineer +
+              costdataScientist) *
+              1.3 *
+              3,
           ).toLocaleString(),
         },
       ];
