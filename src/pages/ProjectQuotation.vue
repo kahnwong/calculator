@@ -85,38 +85,27 @@
       </div>
       <div class="col-3.5">
         <div class="fa-border">
-          <div class="text-h4 text-bold q-pl-sm q-pt-sm">Gen AI</div>
+          <div class="text-h4 text-bold q-pl-sm q-pt-sm">Data Engineer</div>
           <NumberInputComponent
-            v-model.number="genAIRequestsPerMonth.value"
-            :increment-value="genAIRequestsPerMonth.increment"
-            :min-value="genAIRequestsPerMonth.min"
-            label="Requests per month"
+            v-model.number="dataEngineerSalary.value"
+            :increment-value="dataEngineerSalary.increment"
+            :min-value="dataEngineerSalary.min"
+            label="Salary"
             :rules="[
               (val) =>
-                val >= genAIRequestsPerMonth.min ||
-                `Minimum value is ${genAIRequestsPerMonth.min}`,
+                val >= dataEngineerSalary.min ||
+                `Minimum value is ${dataEngineerSalary.min}`,
             ]"
           />
           <NumberInputComponent
-            v-model.number="genAIAvgInputChar.value"
-            :increment-value="genAIAvgInputChar.increment"
-            :min-value="genAIAvgInputChar.min"
-            label="Average input character"
+            v-model.number="dataEngineerMandayWeeks.value"
+            :increment-value="dataEngineerMandayWeeks.increment"
+            :min-value="dataEngineerMandayWeeks.min"
+            label="Manday (Weeks)"
             :rules="[
               (val) =>
-                val >= genAIAvgInputChar.min ||
-                `Minimum value is ${genAIAvgInputChar.min}`,
-            ]"
-          />
-          <NumberInputComponent
-            v-model.number="genAIAvgOutputChar.value"
-            :increment-value="genAIAvgOutputChar.increment"
-            :min-value="genAIAvgOutputChar.min"
-            label="Average output character"
-            :rules="[
-              (val) =>
-                val >= genAIAvgOutputChar.min ||
-                `Minimum value is ${genAIAvgOutputChar.min}`,
+                val >= dataEngineerMandayWeeks.min ||
+                `Minimum value is ${dataEngineerMandayWeeks.min}`,
             ]"
           />
         </div>
@@ -143,9 +132,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import NumberInputComponent from 'components/NumberInputComponent.vue';
-import { cloudRun } from 'src/constants/GcpModel';
-import { containerApps } from 'src/constants/AzureModel';
-import { quotationProjectManager } from 'src/constants/QuotationModel';
+import {
+  quotationProjectManager,
+  quotationDev,
+} from 'src/constants/QuotationModel';
 
 export default defineComponent({
   name: 'HelpPage',
@@ -183,6 +173,17 @@ export default defineComponent({
         value: 4,
         increment: 1,
         min: 2,
+      },
+      // Data Engineer
+      dataEngineerSalary: {
+        value: 60000,
+        increment: 10000,
+        min: 100000,
+      },
+      dataEngineerMandayWeeks: {
+        value: 4,
+        increment: 1,
+        min: 0,
       },
       ////////////////////////////////////////
       memory: {
@@ -243,6 +244,10 @@ export default defineComponent({
         this.technicalLeadMandayRatio.value,
         this.technicalLeadMandayWeeks.value,
       ).cost();
+      let costdataEngineer = new quotationDev(
+        this.dataEngineerSalary.value,
+        this.dataEngineerMandayWeeks.value,
+      ).cost();
 
       // table data
       let columns = [
@@ -266,11 +271,22 @@ export default defineComponent({
       let rows = [
         {
           name: 'Project Manager',
-          cost: Math.round(costProjectManager),
+          cost: Math.round(costProjectManager).toLocaleString(),
         },
         {
           name: 'Technical Lead',
-          cost: Math.round(costTechnicalLead),
+          cost: Math.round(costTechnicalLead).toLocaleString(),
+        },
+        {
+          name: 'Data Engineer',
+          cost: Math.round(costdataEngineer).toLocaleString(),
+        },
+        // total
+        {
+          name: 'Total',
+          cost: Math.round(
+            costProjectManager + costTechnicalLead + costdataEngineer,
+          ).toLocaleString(),
         },
       ];
 
