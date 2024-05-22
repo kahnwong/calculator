@@ -227,7 +227,7 @@ export default defineComponent({
       dataEngineerSalary: {
         value: 60000,
         increment: 10000,
-        min: 100000,
+        min: 60000,
       },
       dataEngineerPersons: {
         value: 1,
@@ -243,7 +243,7 @@ export default defineComponent({
       dataScientistSalary: {
         value: 60000,
         increment: 10000,
-        min: 100000,
+        min: 60000,
       },
       dataScientistPersons: {
         value: 1,
