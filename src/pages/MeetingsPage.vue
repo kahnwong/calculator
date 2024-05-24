@@ -17,56 +17,19 @@
         <div class="q-pb-xl">per year</div>
       </div>
       <div class="col-4">
-        <NumberInputComponent
-          v-model.number="attendees.value"
-          :increment-value="attendees.increment"
-          :min-value="attendees.min"
-          :max-value="attendees.max"
-          label="Number of attendees"
-          :rules="[
-            (val) =>
-              val >= attendees.min || `Minimum value is ${attendees.min}`,
-            (val) =>
-              val <= attendees.max || `Maximum value is ${attendees.max}`,
-          ]"
-        />
-        <NumberInputComponent
-          v-model.number="meetingDurationHours.value"
-          :increment-value="meetingDurationHours.increment"
-          :min-value="meetingDurationHours.min"
-          label="Meeting duration (hours)"
-          :rules="[
-            (val) =>
-              val >= meetingDurationHours.min ||
-              `Minimum value is ${meetingDurationHours.min}`,
-            (val) =>
-              val <= meetingDurationHours.max ||
-              `Maximum value is ${meetingDurationHours.max}`,
-          ]"
-        />
-        <NumberInputComponent
-          v-model.number="timesPerWeek.value"
-          :increment-value="timesPerWeek.increment"
-          :min-value="timesPerWeek.min"
-          label="Times per week"
-          :rules="[
-            (val) =>
-              val >= timesPerWeek.min || `Minimum value is ${timesPerWeek.min}`,
-            (val) =>
-              val <= timesPerWeek.max || `Maximum value is ${timesPerWeek.max}`,
-          ]"
-        />
-        <NumberInputComponent
-          v-model.number="avgAttendeesSalaryPerYear.value"
-          :increment-value="avgAttendeesSalaryPerYear.increment"
-          :min-value="avgAttendeesSalaryPerYear.min"
-          label="Average attendee salary (per year)"
-          :rules="[
-            (val) =>
-              val >= avgAttendeesSalaryPerYear.min ||
-              `Minimum value is ${avgAttendeesSalaryPerYear.min}`,
-          ]"
-        />
+        <div v-for="item in meeting" :key="item.id">
+          <NumberInputComponent
+            v-model.number="item.value"
+            :increment-value="item.increment"
+            :min-value="item.min"
+            :max-value="item.max"
+            :label="item.label"
+            :rules="[
+              (val) => val >= item.min || `Minimum value is ${item.min}`,
+              (val) => val <= item.max || `Maximum value is ${item.max}`,
+            ]"
+          />
+        </div>
       </div>
     </div>
   </q-page>
@@ -81,28 +44,38 @@ export default defineComponent({
   components: { NumberInputComponent },
   data() {
     return {
-      attendees: {
-        value: 5,
-        increment: 1,
-        min: 3,
-        max: 15,
-      },
-      meetingDurationHours: {
-        value: 1,
-        increment: 1,
-        min: 0.5,
-        max: 6,
-      },
-      timesPerWeek: {
-        value: 1,
-        increment: 1,
-        min: 1,
-        max: 7,
-      },
-      avgAttendeesSalaryPerYear: {
-        value: 100000,
-        increment: 50000,
-        min: 50000,
+      meeting: {
+        attendees: {
+          id: 'attendees',
+          label: 'Number of attendees',
+          value: 5,
+          increment: 1,
+          min: 3,
+          max: 15,
+        },
+        meetingDurationHours: {
+          id: 'meetingDurationHours',
+          label: 'Meeting duration (hours)',
+          value: 1,
+          increment: 1,
+          min: 0.5,
+          max: 6,
+        },
+        timesPerWeek: {
+          id: 'timesPerWeek',
+          label: 'Times per week',
+          value: 1,
+          increment: 1,
+          min: 1,
+          max: 7,
+        },
+        avgAttendeesSalaryPerYear: {
+          id: 'avgAttendeesSalaryPerYear',
+          label: 'Average attendee salary (per year)',
+          value: 100000,
+          increment: 50000,
+          min: 50000,
+        },
       },
     };
   },
@@ -110,21 +83,22 @@ export default defineComponent({
   computed: {
     finalValue() {
       // one month has 174 work hours
-      let avgSalaryPerHour = this.avgAttendeesSalaryPerYear.value / 12 / 174;
+      let avgSalaryPerHour =
+        this.meeting.avgAttendeesSalaryPerYear.value / 12 / 174;
 
       let costPerMeeting =
-        this.attendees.value *
-        this.meetingDurationHours.value *
-        this.timesPerWeek.value *
+        this.meeting.attendees.value *
+        this.meeting.meetingDurationHours.value *
+        this.meeting.timesPerWeek.value *
         avgSalaryPerHour;
 
       return {
         costPerMeeting: Math.round(costPerMeeting),
         costPerMinute: Math.round(
-          costPerMeeting / this.meetingDurationHours.value / 60,
+          costPerMeeting / this.meeting.meetingDurationHours.value / 60,
         ),
         costPerYear: Math.round(
-          costPerMeeting * this.timesPerWeek.value * 52.1429,
+          costPerMeeting * this.meeting.timesPerWeek.value * 52.1429,
         ),
       };
     },

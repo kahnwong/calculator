@@ -2,6 +2,7 @@
   <q-input
     class="q-pa-md"
     dense
+    :label="label"
     :model-value="modelValue"
     @update:model-value="updateModelValue"
   >
@@ -44,6 +45,10 @@ export default defineComponent({
     maxValue: {
       type: Number,
       default: null,
+    },
+    label: {
+      type: String,
+      default: 'Please specify a label',
     },
   },
   data() {
