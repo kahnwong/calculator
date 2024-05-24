@@ -17,16 +17,16 @@
         <div class="q-pb-xl">per year</div>
       </div>
       <div class="col-4">
-        <div v-for="item in meeting" :key="item.id">
+        <div v-for="(value, name) in meeting" :key="name">
           <NumberInputComponent
-            v-model.number="item.value"
-            :increment-value="item.increment"
-            :min-value="item.min"
-            :max-value="item.max"
-            :label="item.label"
+            v-model.number="value.value"
+            :increment-value="value.increment"
+            :min-value="value.min"
+            :max-value="value.max"
+            :label="value.label"
             :rules="[
-              (val) => val >= item.min || `Minimum value is ${item.min}`,
-              (val) => val <= item.max || `Maximum value is ${item.max}`,
+              (val) => val >= value.min || `Minimum value is ${value.min}`,
+              (val) => val <= value.max || `Maximum value is ${value.max}`,
             ]"
           />
         </div>
@@ -46,7 +46,6 @@ export default defineComponent({
     return {
       meeting: {
         attendees: {
-          id: 'attendees',
           label: 'Number of attendees',
           value: 5,
           increment: 1,
@@ -54,7 +53,6 @@ export default defineComponent({
           max: 15,
         },
         meetingDurationHours: {
-          id: 'meetingDurationHours',
           label: 'Meeting duration (hours)',
           value: 1,
           increment: 1,
@@ -62,7 +60,6 @@ export default defineComponent({
           max: 6,
         },
         timesPerWeek: {
-          id: 'timesPerWeek',
           label: 'Times per week',
           value: 1,
           increment: 1,
@@ -70,7 +67,6 @@ export default defineComponent({
           max: 7,
         },
         avgAttendeesSalaryPerYear: {
-          id: 'avgAttendeesSalaryPerYear',
           label: 'Average attendee salary (per year)',
           value: 100000,
           increment: 50000,
