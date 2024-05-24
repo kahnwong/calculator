@@ -170,7 +170,7 @@
           :rows="finalValue.rows"
           :columns="finalValue.columns"
           row-key="name"
-          rows-per-page-options="0"
+          :rows-per-page-options="[0]"
           hide-bottom
         />
       </div>

@@ -9,18 +9,18 @@
     <div class="row">
       <div class="col-3">
         <div v-for="(value, name) in gke" :key="name">
-        <NumberInputComponent
+          <NumberInputComponent
             v-model.number="value.value"
             :increment-value="value.increment"
             :min-value="value.min"
             :max-value="value.max"
             :label="value.label"
-          :rules="[
+            :rules="[
               (val) => val >= value.min || `Minimum value is ${value.min}`,
               (val) => val <= value.max || `Maximum value is ${value.max}`,
-          ]"
-        />
-      </div>
+            ]"
+          />
+        </div>
       </div>
       <div class="col-1"></div>
       <div class="col-7 q-pl-lg">
@@ -31,7 +31,7 @@
           :rows="finalValue.rows"
           :columns="finalValue.columns"
           row-key="name"
-          rows-per-page-options="0"
+          :rows-per-page-options="[0]"
           hide-bottom
         />
       </div>
@@ -54,18 +54,18 @@ export default defineComponent({
   data() {
     return {
       gke: {
-      vCPU: {
+        vCPU: {
           label: 'vCPU',
-        value: 0.25,
-        increment: 1,
-        min: 0.25,
-      },
-      memory: {
+          value: 0.25,
+          increment: 1,
+          min: 0.25,
+        },
+        memory: {
           label: 'Memory',
-        value: 0.5,
-        increment: 2,
-        min: 0.5,
-      },
+          value: 0.5,
+          increment: 2,
+          min: 0.5,
+        },
       },
     };
   },
