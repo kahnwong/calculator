@@ -8,22 +8,19 @@
     <div class="q-pb-md"></div>
     <div class="row">
       <div class="col-3">
+        <div v-for="(value, name) in gke" :key="name">
         <NumberInputComponent
-          v-model.number="vCPU.value"
-          :increment-value="vCPU.increment"
-          :min-value="vCPU.min"
-          label="vCPU"
-          :rules="[(val) => val >= vCPU.min || `Minimum value is ${vCPU.min}`]"
-        />
-        <NumberInputComponent
-          v-model.number="memory.value"
-          :increment-value="memory.increment"
-          :min-value="memory.min"
-          label="Memory"
+            v-model.number="value.value"
+            :increment-value="value.increment"
+            :min-value="value.min"
+            :max-value="value.max"
+            :label="value.label"
           :rules="[
-            (val) => val >= memory.min || `Minimum value is ${memory.min}`,
+              (val) => val >= value.min || `Minimum value is ${value.min}`,
+              (val) => val <= value.max || `Maximum value is ${value.max}`,
           ]"
         />
+      </div>
       </div>
       <div class="col-1"></div>
       <div class="col-7 q-pl-lg">
@@ -56,15 +53,19 @@ export default defineComponent({
   components: { NumberInputComponent },
   data() {
     return {
+      gke: {
       vCPU: {
+          label: 'vCPU',
         value: 0.25,
         increment: 1,
         min: 0.25,
       },
       memory: {
+          label: 'Memory',
         value: 0.5,
         increment: 2,
         min: 0.5,
+      },
       },
     };
   },
@@ -72,44 +73,38 @@ export default defineComponent({
   computed: {
     finalValue() {
       // base price
-      let generalPurposeRegularPerHour =
-        this.vCPU.value * generalPurposeModel.cpu_regular +
-        this.memory.value * generalPurposeModel.memory_regular;
-      let generalPurposeSpotPerHour =
-        this.vCPU.value * generalPurposeModel.cpu_spot +
-        this.memory.value * generalPurposeModel.memory_spot;
+      let generalPurpose = new generalPurposeModel(
+        this.gke.vCPU.value,
+        this.gke.memory.value,
+      );
+      let generalPurposeRegularPerHour = generalPurpose.costRegular();
+      let generalPurposeSpotPerHour = generalPurpose.costSpot();
       let generalPurposeOneYearCommitmentPerHour =
-        this.vCPU.value * generalPurposeModel.cpu_one_year_commitment +
-        this.memory.value * generalPurposeModel.memory_one_year_commitment;
+        generalPurpose.costOneYearCommitment();
       let generalPurposeThreeYearCommitmentPerHour =
-        this.vCPU.value * generalPurposeModel.cpu_three_year_commitment +
-        this.memory.value * generalPurposeModel.memory_three_year_commitment;
+        generalPurpose.costThreeYearCommitment();
 
-      let scaleOutARMRegularPerHour =
-        this.vCPU.value * scaleOutARMModel.cpu_regular +
-        this.memory.value * scaleOutARMModel.memory_regular;
-      let scaleOutARMSpotPerHour =
-        this.vCPU.value * scaleOutARMModel.cpu_spot +
-        this.memory.value * scaleOutARMModel.memory_spot;
+      let scaleOutARM = new scaleOutARMModel(
+        this.gke.vCPU.value,
+        this.gke.memory.value,
+      );
+      let scaleOutARMRegularPerHour = scaleOutARM.costRegular();
+      let scaleOutARMSpotPerHour = scaleOutARM.costSpot();
       let scaleOutARMOneYearCommitmentPerHour =
-        this.vCPU.value * scaleOutARMModel.cpu_one_year_commitment +
-        this.memory.value * scaleOutARMModel.memory_one_year_commitment;
+        scaleOutARM.costOneYearCommitment();
       let scaleOutARMThreeYearCommitmentPerHour =
-        this.vCPU.value * scaleOutARMModel.cpu_three_year_commitment +
-        this.memory.value * scaleOutARMModel.memory_three_year_commitment;
+        scaleOutARM.costThreeYearCommitment();
 
-      let scaleOutX86RegularPerHour =
-        this.vCPU.value * scaleOutX86Model.cpu_regular +
-        this.memory.value * scaleOutX86Model.memory_regular;
-      let scaleOutX86SpotPerHour =
-        this.vCPU.value * scaleOutX86Model.cpu_spot +
-        this.memory.value * scaleOutX86Model.memory_spot;
+      let scaleOutX86 = new scaleOutX86Model(
+        this.gke.vCPU.value,
+        this.gke.memory.value,
+      );
+      let scaleOutX86RegularPerHour = scaleOutX86.costRegular();
+      let scaleOutX86SpotPerHour = scaleOutX86.costSpot();
       let scaleOutX86OneYearCommitmentPerHour =
-        this.vCPU.value * scaleOutX86Model.cpu_one_year_commitment +
-        this.memory.value * scaleOutX86Model.memory_one_year_commitment;
+        scaleOutX86.costOneYearCommitment();
       let scaleOutX86ThreeYearCommitmentPerHour =
-        this.vCPU.value * scaleOutX86Model.cpu_three_year_commitment +
-        this.memory.value * scaleOutX86Model.memory_three_year_commitment;
+        scaleOutX86.costThreeYearCommitment();
 
       // constant
       const fractionDigits = 3;
