@@ -38,6 +38,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import NumberInputComponent from 'components/NumberInputComponent.vue';
+import { meetingModel } from 'src/models/MeetingModel';
 
 export default defineComponent({
   name: 'HelpPage',
@@ -78,24 +79,17 @@ export default defineComponent({
   method: {},
   computed: {
     finalValue() {
-      // one month has 174 work hours
-      let avgSalaryPerHour =
-        this.meeting.avgAttendeesSalaryPerYear.value / 12 / 174;
-
-      let costPerMeeting =
-        this.meeting.attendees.value *
-        this.meeting.meetingDurationHours.value *
-        this.meeting.timesPerWeek.value *
-        avgSalaryPerHour;
+      let meeting = new meetingModel(
+        this.meeting.attendees.value,
+        this.meeting.meetingDurationHours.value,
+        this.meeting.timesPerWeek.value,
+        this.meeting.avgAttendeesSalaryPerYear.value,
+      );
 
       return {
-        costPerMeeting: Math.round(costPerMeeting),
-        costPerMinute: Math.round(
-          costPerMeeting / this.meeting.meetingDurationHours.value / 60,
-        ),
-        costPerYear: Math.round(
-          costPerMeeting * this.meeting.timesPerWeek.value * 52.1429,
-        ),
+        costPerMeeting: Math.round(meeting.costPerMeeting),
+        costPerMinute: Math.round(meeting.costPerMinute()),
+        costPerYear: Math.round(meeting.costPerYear()),
       };
     },
   },

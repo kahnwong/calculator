@@ -1,9 +1,3 @@
-// pricing
-// """
-// Unit: USD
-// Region: asia-southeast1
-// """
-
 export class quotationProjectManager {
   salary = 100000;
   mandayRatio = 0.3;
