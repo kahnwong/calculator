@@ -22,11 +22,10 @@
             v-model.number="value.value"
             :increment-value="value.increment"
             :min-value="value.min"
-            :max-value="value.max"
             :label="value.label"
             :rules="[
               (val) => val >= value.min || `Minimum value is ${value.min}`,
-              (val) => val <= value.max || `Maximum value is ${value.max}`,
+              // (val) => val <= value.max || `Maximum value is ${value.max}`,
             ]"
           />
         </div>
@@ -51,21 +50,18 @@ export default defineComponent({
           value: 5,
           increment: 1,
           min: 3,
-          max: 15,
         },
         meetingDurationHours: {
           label: 'Meeting duration (hours)',
           value: 1,
           increment: 1,
           min: 0.5,
-          max: 6,
         },
         timesPerWeek: {
           label: 'Times per week',
           value: 1,
           increment: 1,
           min: 1,
-          max: 7,
         },
         avgAttendeesSalaryPerYear: {
           label: 'Average attendee salary (per year)',

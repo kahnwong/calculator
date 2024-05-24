@@ -13,11 +13,9 @@
             v-model.number="value.value"
             :increment-value="value.increment"
             :min-value="value.min"
-            :max-value="value.max"
             :label="value.label"
             :rules="[
               (val) => val >= value.min || `Minimum value is ${value.min}`,
-              (val) => val <= value.max || `Maximum value is ${value.max}`,
             ]"
           />
         </div>
@@ -38,7 +36,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import NumberInputComponent from 'components/NumberInputComponent.vue';
-import { generalPurposeModel, scaleOutARMModel } from 'src/models/GcpGkeModel';
 import {
   sparkGeneralPurposeModel,
   sparkScaleOutARMModel,
