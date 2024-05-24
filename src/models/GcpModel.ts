@@ -4,7 +4,7 @@
 // Region: asia-southeast1
 // """
 
-export class cloudRun {
+export class cloudRunModel {
   // """
   // https://cloud.google.com/compute/all-pricing
   // """
@@ -43,7 +43,7 @@ export class cloudRun {
   }
 }
 
-export class artifactRegistry {
+export class artifactRegistryModel {
   // """
   // https://cloud.google.com/artifact-registry/pricing
   // """
@@ -63,7 +63,7 @@ export class artifactRegistry {
   }
 }
 
-export class cloudStorage extends artifactRegistry {
+export class cloudStorageModel extends artifactRegistryModel {
   // """
   // https://cloud.google.com/storage/pricing
   // """
@@ -72,7 +72,7 @@ export class cloudStorage extends artifactRegistry {
   storagePerGBMonth = 0.02;
 }
 
-export class genAILanguage {
+export class genAILanguageModel {
   // """
   // https://cloud.google.com/vertex-ai/docs/generative-ai/pricing
   // PaLM 2 for Text

@@ -63,7 +63,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import NumberInputComponent from 'components/NumberInputComponent.vue';
-import { generalPurpose, scaleOutARM } from 'src/models/GcpGkeModel';
+import { generalPurposeModel, scaleOutARMModel } from 'src/models/GcpGkeModel';
 
 export default defineComponent({
   name: 'HelpPage',
@@ -97,8 +97,8 @@ export default defineComponent({
     finalValue() {
       // regular spot
       let regularSpotPricePerHour =
-        this.vCPU.value * generalPurpose.cpu_spot +
-        this.memory.value * generalPurpose.memory_spot;
+        this.vCPU.value * generalPurposeModel.cpu_spot +
+        this.memory.value * generalPurposeModel.memory_spot;
       let regularSpotPrice =
         regularSpotPricePerHour *
         this.jobDurationHour.value *
@@ -106,8 +106,8 @@ export default defineComponent({
 
       // scale out arm spot
       let scaleOutARMSpotPricePerHour =
-        this.vCPU.value * scaleOutARM.cpu_spot +
-        this.memory.value * scaleOutARM.memory_spot;
+        this.vCPU.value * scaleOutARMModel.cpu_spot +
+        this.memory.value * scaleOutARMModel.memory_spot;
       let scaleOutARMSpotPrice =
         scaleOutARMSpotPricePerHour *
         this.jobDurationHour.value *

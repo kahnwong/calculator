@@ -1,4 +1,8 @@
-import { cloudRun, artifactRegistry, genAILanguage } from './GcpModel';
+import {
+  cloudRunModel,
+  artifactRegistryModel,
+  genAILanguageModel,
+} from './GcpModel';
 
 // pricing
 // """
@@ -6,7 +10,7 @@ import { cloudRun, artifactRegistry, genAILanguage } from './GcpModel';
 // Region: Southeast Asia
 // """
 
-export class containerApps extends cloudRun {
+export class containerAppsModel extends cloudRunModel {
   // """
   // https://azure.microsoft.com/en-us/pricing/details/container-apps/#pricing
   // """
@@ -17,7 +21,7 @@ export class containerApps extends cloudRun {
   requestMillion = 0.4;
 }
 
-export class containerRegistry extends artifactRegistry {
+export class containerRegistryModel extends artifactRegistryModel {
   // """
   // https://azure.microsoft.com/en-us/pricing/details/container-registry/#pricing
   // """
@@ -25,7 +29,7 @@ export class containerRegistry extends artifactRegistry {
   storagePerGBMonth = 0.667;
 }
 
-export class blobStorage extends containerRegistry {
+export class blobStorageModel extends containerRegistryModel {
   // """
   // https://azure.microsoft.com/en-us/pricing/details/storage/blobs/#pricing
   // Standard
@@ -35,7 +39,7 @@ export class blobStorage extends containerRegistry {
   storagePerGBMonth = 0.02;
 }
 
-export class openAI extends genAILanguage {
+export class openAIModel extends genAILanguageModel {
   // """
   // https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/#pricing
   // GPT-3.5-Turbo-0125

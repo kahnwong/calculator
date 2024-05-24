@@ -182,8 +182,8 @@
 import { defineComponent } from 'vue';
 import NumberInputComponent from 'components/NumberInputComponent.vue';
 import {
-  quotationProjectManager,
-  quotationDev,
+  quotationProjectManagerModel,
+  quotationDevModel,
 } from 'src/models/QuotationModel';
 
 export default defineComponent({
@@ -261,22 +261,22 @@ export default defineComponent({
   computed: {
     finalValue() {
       // calculate
-      let costProjectManager = new quotationProjectManager(
+      let costProjectManager = new quotationProjectManagerModel(
         this.projectManagerSalary.value,
         this.projectManagerMandayRatio.value,
         this.projectManagerMandayWeeks.value,
       ).cost();
-      let costTechnicalLead = new quotationProjectManager(
+      let costTechnicalLead = new quotationProjectManagerModel(
         this.technicalLeadSalary.value,
         this.technicalLeadMandayRatio.value,
         this.technicalLeadMandayWeeks.value,
       ).cost();
-      let costdataEngineer = new quotationDev(
+      let costdataEngineer = new quotationDevModel(
         this.dataEngineerSalary.value,
         this.dataEngineerPersons.value,
         this.dataEngineerMandayWeeks.value,
       ).cost();
-      let costdataScientist = new quotationDev(
+      let costdataScientist = new quotationDevModel(
         this.dataScientistSalary.value,
         this.dataScientistPersons.value,
         this.dataScientistMandayWeeks.value,

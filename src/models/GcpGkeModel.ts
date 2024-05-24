@@ -5,7 +5,8 @@
 // Price: per hour
 // Region: asia-southeast1
 // """
-export const generalPurpose = {
+
+export const generalPurposeModel = {
   cpu_regular: 0.0549,
   memory_regular: 0.0060729,
   cpu_spot: 0.0165,
@@ -16,7 +17,7 @@ export const generalPurpose = {
   memory_three_year_commitment: 0.0033401,
 };
 
-export const scaleOutARM = {
+export const scaleOutARMModel = {
   cpu_regular: 0.0439,
   memory_regular: 0.0048583,
   cpu_spot: 0.0132,
@@ -27,7 +28,7 @@ export const scaleOutARM = {
   memory_three_year_commitment: 0.0026721,
 };
 
-export const scaleOutX86 = {
+export const scaleOutX86Model = {
   cpu_regular: 0.0692,
   memory_regular: 0.0076518,
   cpu_spot: 0.0208,

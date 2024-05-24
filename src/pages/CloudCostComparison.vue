@@ -155,16 +155,16 @@
 import { defineComponent } from 'vue';
 import NumberInputComponent from 'components/NumberInputComponent.vue';
 import {
-  cloudRun,
-  artifactRegistry,
-  cloudStorage,
-  genAILanguage,
+  cloudRunModel,
+  artifactRegistryModel,
+  cloudStorageModel,
+  genAILanguageModel,
 } from 'src/models/GcpModel';
 import {
-  containerApps,
-  containerRegistry,
-  blobStorage,
-  openAI,
+  containerAppsModel,
+  containerRegistryModel,
+  blobStorageModel,
+  openAIModel,
 } from 'src/models/AzureModel';
 
 export default defineComponent({
@@ -226,35 +226,39 @@ export default defineComponent({
   computed: {
     finalValue() {
       // calculate
-      let caasGCP = new cloudRun(
+      let caasGCP = new cloudRunModel(
         this.vCPU.value,
         this.memory.value,
         this.executionTimePerRequestMS.value,
         this.requestsPerMonth.value,
       ).cost();
-      let caasAzure = new containerApps(
+      let caasAzure = new containerAppsModel(
         this.vCPU.value,
         this.memory.value,
         this.executionTimePerRequestMS.value,
         this.requestsPerMonth.value,
       ).cost();
 
-      let containerRegistryGCP = new artifactRegistry(
+      let containerRegistryGCP = new artifactRegistryModel(
         this.containerStorageGB.value,
       ).cost();
-      let containerRegistryAzure = new containerRegistry(
+      let containerRegistryAzure = new containerRegistryModel(
         this.containerStorageGB.value,
       ).cost();
 
-      let blobStorageGCP = new cloudStorage(this.blobStorageGB.value).cost();
-      let blobStorageAzure = new blobStorage(this.blobStorageGB.value).cost();
+      let blobStorageGCP = new cloudStorageModel(
+        this.blobStorageGB.value,
+      ).cost();
+      let blobStorageAzure = new blobStorageModel(
+        this.blobStorageGB.value,
+      ).cost();
 
-      let genAIGCP = new genAILanguage(
+      let genAIGCP = new genAILanguageModel(
         this.genAIRequestsPerMonth.value,
         this.genAIAvgInputChar.value,
         this.genAIAvgOutputChar.value,
       ).cost();
-      let genAIAzure = new openAI(
+      let genAIAzure = new openAIModel(
         this.genAIRequestsPerMonth.value,
         this.genAIAvgInputChar.value,
         this.genAIAvgOutputChar.value,

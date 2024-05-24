@@ -46,9 +46,9 @@
 import { defineComponent } from 'vue';
 import NumberInputComponent from 'components/NumberInputComponent.vue';
 import {
-  generalPurpose,
-  scaleOutARM,
-  scaleOutX86,
+  generalPurposeModel,
+  scaleOutARMModel,
+  scaleOutX86Model,
 } from 'src/models/GcpGkeModel';
 
 export default defineComponent({
@@ -73,43 +73,43 @@ export default defineComponent({
     finalValue() {
       // base price
       let generalPurposeRegularPerHour =
-        this.vCPU.value * generalPurpose.cpu_regular +
-        this.memory.value * generalPurpose.memory_regular;
+        this.vCPU.value * generalPurposeModel.cpu_regular +
+        this.memory.value * generalPurposeModel.memory_regular;
       let generalPurposeSpotPerHour =
-        this.vCPU.value * generalPurpose.cpu_spot +
-        this.memory.value * generalPurpose.memory_spot;
+        this.vCPU.value * generalPurposeModel.cpu_spot +
+        this.memory.value * generalPurposeModel.memory_spot;
       let generalPurposeOneYearCommitmentPerHour =
-        this.vCPU.value * generalPurpose.cpu_one_year_commitment +
-        this.memory.value * generalPurpose.memory_one_year_commitment;
+        this.vCPU.value * generalPurposeModel.cpu_one_year_commitment +
+        this.memory.value * generalPurposeModel.memory_one_year_commitment;
       let generalPurposeThreeYearCommitmentPerHour =
-        this.vCPU.value * generalPurpose.cpu_three_year_commitment +
-        this.memory.value * generalPurpose.memory_three_year_commitment;
+        this.vCPU.value * generalPurposeModel.cpu_three_year_commitment +
+        this.memory.value * generalPurposeModel.memory_three_year_commitment;
 
       let scaleOutARMRegularPerHour =
-        this.vCPU.value * scaleOutARM.cpu_regular +
-        this.memory.value * scaleOutARM.memory_regular;
+        this.vCPU.value * scaleOutARMModel.cpu_regular +
+        this.memory.value * scaleOutARMModel.memory_regular;
       let scaleOutARMSpotPerHour =
-        this.vCPU.value * scaleOutARM.cpu_spot +
-        this.memory.value * scaleOutARM.memory_spot;
+        this.vCPU.value * scaleOutARMModel.cpu_spot +
+        this.memory.value * scaleOutARMModel.memory_spot;
       let scaleOutARMOneYearCommitmentPerHour =
-        this.vCPU.value * scaleOutARM.cpu_one_year_commitment +
-        this.memory.value * scaleOutARM.memory_one_year_commitment;
+        this.vCPU.value * scaleOutARMModel.cpu_one_year_commitment +
+        this.memory.value * scaleOutARMModel.memory_one_year_commitment;
       let scaleOutARMThreeYearCommitmentPerHour =
-        this.vCPU.value * scaleOutARM.cpu_three_year_commitment +
-        this.memory.value * scaleOutARM.memory_three_year_commitment;
+        this.vCPU.value * scaleOutARMModel.cpu_three_year_commitment +
+        this.memory.value * scaleOutARMModel.memory_three_year_commitment;
 
       let scaleOutX86RegularPerHour =
-        this.vCPU.value * scaleOutX86.cpu_regular +
-        this.memory.value * scaleOutX86.memory_regular;
+        this.vCPU.value * scaleOutX86Model.cpu_regular +
+        this.memory.value * scaleOutX86Model.memory_regular;
       let scaleOutX86SpotPerHour =
-        this.vCPU.value * scaleOutX86.cpu_spot +
-        this.memory.value * scaleOutX86.memory_spot;
+        this.vCPU.value * scaleOutX86Model.cpu_spot +
+        this.memory.value * scaleOutX86Model.memory_spot;
       let scaleOutX86OneYearCommitmentPerHour =
-        this.vCPU.value * scaleOutX86.cpu_one_year_commitment +
-        this.memory.value * scaleOutX86.memory_one_year_commitment;
+        this.vCPU.value * scaleOutX86Model.cpu_one_year_commitment +
+        this.memory.value * scaleOutX86Model.memory_one_year_commitment;
       let scaleOutX86ThreeYearCommitmentPerHour =
-        this.vCPU.value * scaleOutX86.cpu_three_year_commitment +
-        this.memory.value * scaleOutX86.memory_three_year_commitment;
+        this.vCPU.value * scaleOutX86Model.cpu_three_year_commitment +
+        this.memory.value * scaleOutX86Model.memory_three_year_commitment;
 
       // constant
       const fractionDigits = 3;

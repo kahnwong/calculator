@@ -1,4 +1,4 @@
-export class quotationProjectManager {
+export class quotationProjectManagerModel {
   salary = 100000;
   mandayRatio = 0.3;
   mandayWeeks = 4;
@@ -17,7 +17,7 @@ export class quotationProjectManager {
   }
 }
 
-export class quotationDev {
+export class quotationDevModel {
   salary = 100000;
   persons = 1;
   mandayWeeks = 4;
