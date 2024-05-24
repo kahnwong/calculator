@@ -49,7 +49,7 @@ import {
   generalPurpose,
   scaleOutARM,
   scaleOutX86,
-} from 'src/constants/GcpGkeModel';
+} from 'src/models/GcpGkeModel';
 
 export default defineComponent({
   name: 'HelpPage',

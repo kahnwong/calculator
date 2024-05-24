@@ -184,7 +184,7 @@ import NumberInputComponent from 'components/NumberInputComponent.vue';
 import {
   quotationProjectManager,
   quotationDev,
-} from 'src/constants/QuotationModel';
+} from 'src/models/QuotationModel';
 
 export default defineComponent({
   name: 'HelpPage',

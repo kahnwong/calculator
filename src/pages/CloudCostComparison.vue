@@ -159,13 +159,13 @@ import {
   artifactRegistry,
   cloudStorage,
   genAILanguage,
-} from 'src/constants/GcpModel';
+} from 'src/models/GcpModel';
 import {
   containerApps,
   containerRegistry,
   blobStorage,
   openAI,
-} from 'src/constants/AzureModel';
+} from 'src/models/AzureModel';
 
 export default defineComponent({
   name: 'HelpPage',
