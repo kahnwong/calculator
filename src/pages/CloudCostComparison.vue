@@ -16,46 +16,17 @@
       <div class="col-4.5 q-pl-sm q-pr-lg">
         <div class="fa-border">
           <div class="text-h4 text-bold q-pl-sm q-pt-sm">CaaS</div>
-          <NumberInputComponent
-            v-model.number="vCPU.value"
-            :increment-value="vCPU.increment"
-            :min-value="vCPU.min"
-            label="vCPU"
-            :rules="[
-              (val) => val >= vCPU.min || `Minimum value is ${vCPU.min}`,
-            ]"
-          />
-          <NumberInputComponent
-            v-model.number="memory.value"
-            :increment-value="memory.increment"
-            :min-value="memory.min"
-            label="Memory"
-            :rules="[
-              (val) => val >= memory.min || `Minimum value is ${memory.min}`,
-            ]"
-          />
-          <NumberInputComponent
-            v-model.number="executionTimePerRequestMS.value"
-            :increment-value="executionTimePerRequestMS.increment"
-            :min-value="executionTimePerRequestMS.min"
-            label="Execution time (ms)"
-            :rules="[
-              (val) =>
-                val >= executionTimePerRequestMS.min ||
-                `Minimum value is ${executionTimePerRequestMS.min}`,
-            ]"
-          />
-          <NumberInputComponent
-            v-model.number="requestsPerMonth.value"
-            :increment-value="requestsPerMonth.increment"
-            :min-value="requestsPerMonth.min"
-            label="Requests per month)"
-            :rules="[
-              (val) =>
-                val >= requestsPerMonth.min ||
-                `Minimum value is ${requestsPerMonth.min}`,
-            ]"
-          />
+          <div v-for="(value, name) in caas" :key="name">
+            <NumberInputComponent
+              v-model.number="value.value"
+              :increment-value="value.increment"
+              :min-value="value.min"
+              :label="value.label"
+              :rules="[
+                (val) => val >= value.min || `Minimum value is ${value.min}`,
+              ]"
+            />
+          </div>
         </div>
       </div>
       <div class="col-3.5 q-pr-lg">
@@ -64,72 +35,51 @@
             <div class="text-h4 text-bold q-pl-sm q-pt-sm">
               Container Storage
             </div>
-            <NumberInputComponent
-              v-model.number="containerStorageGB.value"
-              :increment-value="containerStorageGB.increment"
-              :min-value="containerStorageGB.min"
-              label="Storage (GB)"
-              :rules="[
-                (val) =>
-                  val >= containerStorageGB.min ||
-                  `Minimum value is ${containerStorageGB.min}`,
-              ]"
-            />
+
+            <div v-for="(value, name) in containerStorage" :key="name">
+              <NumberInputComponent
+                v-model.number="value.value"
+                :increment-value="value.increment"
+                :min-value="value.min"
+                :label="value.label"
+                :rules="[
+                  (val) => val >= value.min || `Minimum value is ${value.min}`,
+                ]"
+              />
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="fa-border">
             <div class="text-h4 text-bold q-pl-sm q-pt-sm">Blob Storage</div>
-            <NumberInputComponent
-              v-model.number="blobStorageGB.value"
-              :increment-value="blobStorageGB.increment"
-              :min-value="blobStorageGB.min"
-              label="Storage (GB)"
-              :rules="[
-                (val) =>
-                  val >= blobStorageGB.min ||
-                  `Minimum value is ${blobStorageGB.min}`,
-              ]"
-            />
+            <div v-for="(value, name) in blobStorage" :key="name">
+              <NumberInputComponent
+                v-model.number="value.value"
+                :increment-value="value.increment"
+                :min-value="value.min"
+                :label="value.label"
+                :rules="[
+                  (val) => val >= value.min || `Minimum value is ${value.min}`,
+                ]"
+              />
+            </div>
           </div>
         </div>
       </div>
       <div class="col-3.5">
         <div class="fa-border">
           <div class="text-h4 text-bold q-pl-sm q-pt-sm">Gen AI</div>
-          <NumberInputComponent
-            v-model.number="genAIRequestsPerMonth.value"
-            :increment-value="genAIRequestsPerMonth.increment"
-            :min-value="genAIRequestsPerMonth.min"
-            label="Requests per month"
-            :rules="[
-              (val) =>
-                val >= genAIRequestsPerMonth.min ||
-                `Minimum value is ${genAIRequestsPerMonth.min}`,
-            ]"
-          />
-          <NumberInputComponent
-            v-model.number="genAIAvgInputChar.value"
-            :increment-value="genAIAvgInputChar.increment"
-            :min-value="genAIAvgInputChar.min"
-            label="Average input character"
-            :rules="[
-              (val) =>
-                val >= genAIAvgInputChar.min ||
-                `Minimum value is ${genAIAvgInputChar.min}`,
-            ]"
-          />
-          <NumberInputComponent
-            v-model.number="genAIAvgOutputChar.value"
-            :increment-value="genAIAvgOutputChar.increment"
-            :min-value="genAIAvgOutputChar.min"
-            label="Average output character"
-            :rules="[
-              (val) =>
-                val >= genAIAvgOutputChar.min ||
-                `Minimum value is ${genAIAvgOutputChar.min}`,
-            ]"
-          />
+          <div v-for="(value, name) in genAI" :key="name">
+            <NumberInputComponent
+              v-model.number="value.value"
+              :increment-value="value.increment"
+              :min-value="value.min"
+              :label="value.label"
+              :rules="[
+                (val) => val >= value.min || `Minimum value is ${value.min}`,
+              ]"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -172,53 +122,68 @@ export default defineComponent({
   components: { NumberInputComponent },
   data() {
     return {
-      // caas
-      vCPU: {
-        value: 2,
-        increment: 1,
-        min: 1,
+      caas: {
+        vCPU: {
+          label: 'vCPU',
+          value: 2,
+          increment: 1,
+          min: 1,
+        },
+        memory: {
+          label: 'Memory',
+          value: 2,
+          increment: 2,
+          min: 0.5,
+        },
+        executionTimePerRequestMS: {
+          label: 'Execution Time Per Request (ms)',
+          value: 500,
+          increment: 100,
+          min: 100,
+        },
+        requestsPerMonth: {
+          label: 'Requests per month',
+          value: 100000,
+          increment: 1000,
+          min: 1000,
+        },
       },
-      memory: {
-        value: 2,
-        increment: 2,
-        min: 0.5,
+      containerStorage: {
+        containerStorageGB: {
+          label: 'Container Storage (GB)',
+          value: 5,
+          increment: 2,
+          min: 5,
+        },
       },
-      executionTimePerRequestMS: {
-        value: 500,
-        increment: 100,
-        min: 100,
+
+      blobStorage: {
+        blobStorageGB: {
+          label: 'Blob Storage (GB)',
+          value: 5,
+          increment: 2,
+          min: 5,
+        },
       },
-      requestsPerMonth: {
-        value: 100000,
-        increment: 1000,
-        min: 1000,
-      },
-      // storage
-      containerStorageGB: {
-        value: 5,
-        increment: 2,
-        min: 5,
-      },
-      blobStorageGB: {
-        value: 5,
-        increment: 2,
-        min: 5,
-      },
-      // gen ai
-      genAIRequestsPerMonth: {
-        value: 20000,
-        increment: 1000,
-        min: 1000,
-      },
-      genAIAvgInputChar: {
-        value: 1000,
-        increment: 200,
-        min: 100,
-      },
-      genAIAvgOutputChar: {
-        value: 2000,
-        increment: 200,
-        min: 100,
+      genAI: {
+        requestsPerMonth: {
+          label: 'Requests per month',
+          value: 20000,
+          increment: 1000,
+          min: 1000,
+        },
+        avgInputChar: {
+          label: 'Average input characters',
+          value: 1000,
+          increment: 200,
+          min: 100,
+        },
+        avgOutputChar: {
+          label: 'Average output characters',
+          value: 2000,
+          increment: 200,
+          min: 100,
+        },
       },
     };
   },
@@ -227,41 +192,41 @@ export default defineComponent({
     finalValue() {
       // calculate
       let caasGCP = new cloudRunModel(
-        this.vCPU.value,
-        this.memory.value,
-        this.executionTimePerRequestMS.value,
-        this.requestsPerMonth.value,
+        this.caas.vCPU.value,
+        this.caas.memory.value,
+        this.caas.executionTimePerRequestMS.value,
+        this.caas.requestsPerMonth.value,
       ).cost();
       let caasAzure = new containerAppsModel(
-        this.vCPU.value,
-        this.memory.value,
-        this.executionTimePerRequestMS.value,
-        this.requestsPerMonth.value,
+        this.caas.vCPU.value,
+        this.caas.memory.value,
+        this.caas.executionTimePerRequestMS.value,
+        this.caas.requestsPerMonth.value,
       ).cost();
 
       let containerRegistryGCP = new artifactRegistryModel(
-        this.containerStorageGB.value,
+        this.containerStorage.containerStorageGB.value,
       ).cost();
       let containerRegistryAzure = new containerRegistryModel(
-        this.containerStorageGB.value,
+        this.containerStorage.containerStorageGB.value,
       ).cost();
 
       let blobStorageGCP = new cloudStorageModel(
-        this.blobStorageGB.value,
+        this.blobStorage.blobStorageGB.value,
       ).cost();
       let blobStorageAzure = new blobStorageModel(
-        this.blobStorageGB.value,
+        this.blobStorage.blobStorageGB.value,
       ).cost();
 
       let genAIGCP = new genAILanguageModel(
-        this.genAIRequestsPerMonth.value,
-        this.genAIAvgInputChar.value,
-        this.genAIAvgOutputChar.value,
+        this.genAI.requestsPerMonth.value,
+        this.genAI.avgInputChar.value,
+        this.genAI.avgOutputChar.value,
       ).cost();
       let genAIAzure = new openAIModel(
-        this.genAIRequestsPerMonth.value,
-        this.genAIAvgInputChar.value,
-        this.genAIAvgOutputChar.value,
+        this.genAI.requestsPerMonth.value,
+        this.genAI.avgInputChar.value,
+        this.genAI.avgOutputChar.value,
       ).cost();
 
       // constant
