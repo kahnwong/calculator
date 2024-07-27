@@ -1,8 +1,17 @@
-name: Deploy
+name: Publish to Cloudflare Pages
 
 on:
   push:
     branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: environment-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PROJECT_NAME: calculator
+  BUILD_DIR: dist/spa
 
 jobs:
   publish:
@@ -26,10 +35,8 @@ jobs:
         run: yarn build
       # ---------- publish ----------
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID}}
-          projectName: calculator
-          directory: dist/spa
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ${{ env.BUILD_DIR }} --project-name=${{ env.PROJECT_NAME }}
