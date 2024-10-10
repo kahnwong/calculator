@@ -1,5 +1,5 @@
 ---
-name: Go Test
+name: Node Test
 on:
   pull_request:
     paths-ignore:
