@@ -150,10 +150,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@quasar/app-vite@^1.10.0":
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/@quasar/app-vite/-/app-vite-1.10.0.tgz#06cc410e23e7ab3ed0321ee3df6c37652a2af516"
-  integrity sha512-9zJfSBh1GtsmS1c3zIKa78gwPAMJoJ4AHv7KftkaaLQ4F1z2DpoqKbJG8YiXVR9STOronPAh+4JNypFP1RHFfQ==
+"@quasar/app-vite@^1.10.1":
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/@quasar/app-vite/-/app-vite-1.10.1.tgz#0610d5136bd3af0d5718715f2f797f0cbc23dada"
+  integrity sha512-OSl/A/kXbXvvO72Dt2IndUWZH3+HGRjojyQE1gaCqZVc3HxY1ZRyikN39f32JbjSOsG7m4Eonp2JcK6bxodgQA==
   dependencies:
     "@quasar/render-ssr-error" "^1.0.3"
     "@quasar/vite-plugin" "^1.7.0"
