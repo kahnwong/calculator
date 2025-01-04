@@ -54,7 +54,7 @@
       </div>
       <div class="row q-pl-sm q-py-lg">
         <div class="column">
-          <div class="text-h4 text-bold q-pb-sm">Cost</div>
+          <div class="text-h4 text-bold q-pb-sm"><span class="text-secondary">Cost</span></div>
           <q-table
             flat
             bordered
