@@ -30,7 +30,7 @@ import AppLink, { type AppLinkProps } from 'components/AppLink.vue'
 
 const linksList: AppLinkProps[] = [
   {
-    title: 'Meeting Cost Calculator',
+    title: 'Meeting Cost',
     link: '/meeting',
   },
   {

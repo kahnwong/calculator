@@ -1,7 +1,7 @@
 <template>
   <q-page class="q-pl-lg">
     <q-layout view="hHh lpR fFf" container id="layout-container-cloud-cost-comparison">
-      <div class="text-h4 text-bold q-pb-lg q-pt-lg">Project Quotation</div>
+      <div class="text-h4 text-bold q-pb-lg q-pt-lg"><span class="text-secondary">Project Quotation</span></div>
 
       <div class="q-pb-md"></div>
       <div class="row">

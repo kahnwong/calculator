@@ -1,7 +1,7 @@
 <template>
   <q-page class="q-pl-lg">
     <q-layout view="hHh lpR fFf" container id="layout-container-meeting">
-      <div class="text-h4 text-bold q-pb-lg q-pt-lg q-pr-md">Meeting Cost Calculator</div>
+      <div class="text-h4 text-bold q-pb-lg q-pt-lg q-pr-md"><span class="text-secondary">Meeting</span> Cost Calculator</div>
 
       <div class="text-h5 text-bold q-pb-md q-pr-md">How much does this meeting really cost?</div>
       <div class="q-pb-md"></div>

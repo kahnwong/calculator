@@ -1,7 +1,7 @@
 <template>
   <q-page class="q-pl-lg">
     <q-layout view="hHh lpR fFf" container id="layout-container-gke-autopilot">
-      <div class="text-h4 text-bold q-pb-lg q-pt-lg">GKE Autopilot Cost Calculator</div>
+      <div class="text-h4 text-bold q-pb-lg q-pt-lg"><span class="text-secondary">GKE Autopilot</span> Cost Calculator</div>
       <div class="q-pb-md"></div>
       <div class="row">
         <div class="col-3">
