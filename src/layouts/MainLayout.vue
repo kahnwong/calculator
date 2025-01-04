@@ -1,24 +1,21 @@
 <template>
   <q-layout view="hHh Lpr lFf">
-    <q-header elevated class="bg-secondary">
+    <q-header elevated>
       <q-toolbar>
-        <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
-        <q-toolbar-title>Calculator</q-toolbar-title>
+        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
+
+        <q-toolbar-title> Calculator </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="drawer"
-      show-if-above
-      bordered
-      :width="200"
-      :breakpoint="500"
-    >
-      <q-scroll-area class="fit">
-        <q-list padding class="menu-list">
-          <Apps v-for="link in apps" :key="link.title" v-bind="link" />
-        </q-list>
-      </q-scroll-area>
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered :breakpoint="500" :width="200">
+      <q-tabs vertical align="left" dense>
+        <q-item-label header class="text-bold">
+          <span class="text-primary">Apps</span>
+        </q-item-label>
+
+        <AppLink v-for="link in linksList" :key="link.title" v-bind="link" />
+      </q-tabs>
     </q-drawer>
 
     <q-page-container>
@@ -27,14 +24,14 @@
   </q-layout>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-import App from 'components/App.vue';
+<script setup lang="ts">
+import { ref } from 'vue'
+import AppLink, { type AppLinkProps } from 'components/AppLink.vue'
 
-const linksList = [
+const linksList: AppLinkProps[] = [
   {
-    title: 'Meetings',
-    link: '/',
+    title: 'Meeting Cost Calculator',
+    link: '/meeting',
   },
   {
     title: 'GKE Autopilot',
@@ -52,29 +49,11 @@ const linksList = [
     title: 'Project Quotation',
     link: '/project-quotation',
   },
-];
+]
 
-export default defineComponent({
-  name: 'MainLayout',
+const leftDrawerOpen = ref(false)
 
-  components: {
-    Apps: App,
-  },
-
-  setup() {
-    return {
-      apps: linksList,
-      drawer: ref(false),
-    };
-  },
-});
-</script>
-
-<style lang="scss">
-.header {
-  height: 100%;
-  z-index: -1;
-  opacity: 0.2;
-  filter: grayscale(100%);
+function toggleLeftDrawer() {
+  leftDrawerOpen.value = !leftDrawerOpen.value
 }
-</style>
+</script>

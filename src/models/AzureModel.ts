@@ -1,8 +1,4 @@
-import {
-  cloudRunModel,
-  artifactRegistryModel,
-  genAILanguageModel,
-} from './GcpModel';
+import { CloudRunModel, ArtifactRegistryModel } from './GcpModel'
 
 // pricing
 // """
@@ -10,42 +6,46 @@ import {
 // Region: Southeast Asia
 // """
 
-export class containerAppsModel extends cloudRunModel {
+export class ContainerAppsModel extends CloudRunModel {
   // """
   // https://azure.microsoft.com/en-us/pricing/details/container-apps/#pricing
   // """
 
-  // cost
-  vCPUSecond = 0.000034;
-  memorySecond = 0.000004;
-  requestMillion = 0.4;
+  constructor(
+    vCPURequest: number,
+    memoryRequest: number,
+    executionTimePerRequestMS: number,
+    requestsPerMonth: number,
+  ) {
+    super(vCPURequest, memoryRequest, executionTimePerRequestMS, requestsPerMonth)
+
+    this.vCPUSecond = 0.000034
+    this.memorySecond = 0.000004
+    this.requestMillion = 0.4
+  }
 }
 
-export class containerRegistryModel extends artifactRegistryModel {
+export class ContainerRegistryModel extends ArtifactRegistryModel {
   // """
   // https://azure.microsoft.com/en-us/pricing/details/container-registry/#pricing
   // """
 
-  storagePerGBMonth = 0.667;
+  constructor(storageGB: number) {
+    super(storageGB)
+
+    this.storagePerGBMonth = 0.667
+  }
 }
 
-export class blobStorageModel extends containerRegistryModel {
+export class BlobStorageModel extends ContainerRegistryModel {
   // """
   // https://azure.microsoft.com/en-us/pricing/details/storage/blobs/#pricing
   // Standard
   // """
 
-  // cost
-  storagePerGBMonth = 0.02;
-}
+  constructor(storageGB: number) {
+    super(storageGB)
 
-export class openAIModel extends genAILanguageModel {
-  // """
-  // https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/#pricing
-  // GPT-3.5-Turbo-0125
-  // """
-
-  // cost
-  inputPerThousandCharacter = 0.0005;
-  outputPerThousandCharacter = 0.0015;
+    this.storagePerGBMonth = 0.02
+  }
 }

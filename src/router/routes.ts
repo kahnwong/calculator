@@ -1,37 +1,34 @@
-import { RouteRecordRaw } from 'vue-router';
+import type { RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/meetings',
+    redirect: '/meeting',
     component: () => import('layouts/MainLayout.vue'),
+    // apps
     children: [
-      { path: '/meetings', component: () => import('pages/MeetingsPage.vue') },
-      {
-        path: '/gke-autopilot',
-        component: () => import('pages/GKEAutopilot.vue'),
-      },
+      { path: '/meeting', component: () => import('pages/MeetingPage.vue') },
+      { path: '/gke-autopilot', component: () => import('pages/GkeAutopilotPage.vue') },
       {
         path: '/gke-autopilot-spark-job',
-        component: () => import('pages/GKEAutopilotSparkJob.vue'),
+        component: () => import('pages/GkeAutopilotSparkJobPage.vue'),
       },
       {
         path: '/cloud-cost-comparison',
-        component: () => import('pages/CloudCostComparison.vue'),
+        component: () => import('pages/CloudCostComparisonPage.vue'),
       },
       {
         path: '/project-quotation',
-        component: () => import('pages/ProjectQuotation.vue'),
+        component: () => import('pages/ProjectQuotationPage.vue'),
       },
     ],
   },
 
-  // Always leave this as last one,
-  // but you can also remove it
+  // 404
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue'),
   },
-];
+]
 
-export default routes;
+export default routes
