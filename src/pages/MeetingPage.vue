@@ -24,6 +24,7 @@
           />
         </div>
       </div>
+      <div>{{foo}}</div>
     </q-layout>
   </q-page>
 </template>
@@ -32,6 +33,7 @@
 import NumberInput, { type NumberInputProps } from 'components/NumberInput.vue'
 import { MeetingModel } from 'src/models/MeetingModel'
 import { computed, ref } from 'vue'
+import axios ,{type AxiosResponse} from 'axios'
 
 // input struct
 export interface Meeting {
@@ -73,6 +75,20 @@ const meetingCost = computed(() => {
     perMinute: Math.round(meeting.costPerMinute()),
     perYear: Math.round(meeting.costPerYear()),
   }
+})
+
+const data = ref(null)
+
+function loadData () {
+  axios.get('https://api.sampleapis.com/coffee/hot')
+    .then((response: AxiosResponse) => {
+      data.value = response.data as null
+    })
+}
+
+const foo = computed(() => {
+  loadData ()
+  return data.value
 })
 </script>
 
