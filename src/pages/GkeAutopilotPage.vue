@@ -4,27 +4,30 @@
       <div class="text-h4 text-bold q-pb-lg q-pt-lg"><span class="text-secondary">GKE Autopilot</span> Cost Calculator</div>
       <div class="q-pb-md"></div>
       <div class="row">
-        <div class="col-3">
-          <NumberInput
-            v-for="input in gkeAutopilotInput"
-            :key="input.label"
-            v-bind="input"
-            :label="input.label"
-            v-model="input.value"
-          />
+        <div class="col-4.5 q-pl-sm q-pr-lg q-pb-lg">
+          <div class="fa-border">
+            <NumberInput
+              v-for="input in gkeAutopilotInput"
+              :key="input.label"
+              v-bind="input"
+              :label="input.label"
+              v-model="input.value"
+            />
+          </div>
         </div>
-        <div class="col-1"></div>
-        <div class="col-7 q-pl-lg">
-          <q-table
-            flat
-            bordered
-            dense
-            :rows="gkeAutopilotCost.rows"
-            :columns="gkeAutopilotCost.columns"
-            row-key="name"
-            :rows-per-page-options="[0]"
-            hide-bottom
-          />
+        <div class="col-3.5 q-pr-lg">
+          <div class="fa-border">
+            <q-table
+              flat
+              bordered
+              dense
+              :rows="gkeAutopilotCost.rows"
+              :columns="gkeAutopilotCost.columns"
+              row-key="name"
+              :rows-per-page-options="[0]"
+              hide-bottom
+            />
+          </div>
         </div>
       </div>
     </q-layout>
