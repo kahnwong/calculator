@@ -33,7 +33,11 @@ export class ContainerRegistryModel extends ArtifactRegistryModel {
   constructor(storageGB: number) {
     super(storageGB)
 
-    this.storagePerGBMonth = 0.667
+    if (this.storageGB <= 10) {
+      this.storagePerGBMonth = 0.167
+    } else {
+      this.storagePerGBMonth = 0.667
+    }
   }
 }
 
