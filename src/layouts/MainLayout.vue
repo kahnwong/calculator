@@ -58,9 +58,11 @@ function toggleLeftDrawer() {
 }
 
 // analytics
-const analyticsScript = document.createElement('script')
-analyticsScript.setAttribute('defer', '')
-analyticsScript.setAttribute('src', 'https://umami.karnwong.me/script.js')
-analyticsScript.setAttribute('data-website-id', 'de8b4631-aac2-41ef-9286-38730945ba04')
-document.head.appendChild(analyticsScript)
+if (process.env.NODE_ENV != 'development') {
+  const analyticsScript = document.createElement('script')
+  analyticsScript.setAttribute('defer', '')
+  analyticsScript.setAttribute('src', 'https://umami.karnwong.me/script.js')
+  analyticsScript.setAttribute('data-website-id', 'de8b4631-aac2-41ef-9286-38730945ba04')
+  document.head.appendChild(analyticsScript)
+}
 </script>
