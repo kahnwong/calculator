@@ -84,7 +84,7 @@ const projectManagerRoleInput = ref<Role>({
     value: 90000,
   },
   mandayUnit: {
-    label: 'Manday Ratio Per Day',
+    label: 'Manday Ratio per Day',
     value: 0.5,
   },
   durationWeeks: {
@@ -98,7 +98,7 @@ const architectRoleInput = ref<Role>({
     value: 140000,
   },
   mandayUnit: {
-    label: 'Manday Ratio Per Day',
+    label: 'Manday Ratio per Day',
     value: 0.5,
   },
   durationWeeks: {

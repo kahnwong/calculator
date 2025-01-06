@@ -101,7 +101,7 @@ const caasInput = ref<CaaS>({
     value: 1,
   },
   executionTimePerRequestMS: {
-    label: 'Execution Time Per Request (ms)*',
+    label: 'Execution Time per Request (ms)*',
     value: 500,
   },
   requestsPerMonth: {
