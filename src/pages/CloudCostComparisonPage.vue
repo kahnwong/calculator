@@ -17,7 +17,10 @@
         <!--caas-->
         <div class="col-4.5 q-pl-sm q-pr-lg">
           <div class="fa-border">
-            <div class="text-h4 text-bold q-pl-sm q-pt-sm">CaaS</div>
+            <div class="q-pl-sm q-pt-sm">
+              <p class="text-h4 text-bold">CaaS</p>
+              <p>*Not Applicable for AWS</p>
+            </div>
             <NumberInput
               v-for="input in caasInput"
               :key="input.label"
@@ -77,6 +80,7 @@
 import NumberInput, { type NumberInputProps } from 'components/NumberInput.vue'
 import { computed, ref } from 'vue'
 import { ArtifactRegistryModel, CloudRunModel, CloudStorageModel } from 'src/models/GcpModel'
+import { EcrModel, EcsFargateModel, S3Model } from 'src/models/AwsModel'
 import { BlobStorageModel, ContainerAppsModel, ContainerRegistryModel } from 'src/models/AzureModel'
 import { type TableColumns, CreateColumnsObject } from 'src/utils/Table'
 
@@ -97,11 +101,11 @@ const caasInput = ref<CaaS>({
     value: 1,
   },
   executionTimePerRequestMS: {
-    label: 'Execution Time Per Request (ms)',
+    label: 'Execution Time Per Request (ms)*',
     value: 500,
   },
   requestsPerMonth: {
-    label: 'Requests per month',
+    label: 'Requests per month*',
     value: 100000,
   },
 })
@@ -125,6 +129,7 @@ const blobStorageInput = ref<Storage>({
 // table component struct
 const columnsInput: TableColumns = {
   service: 'Service',
+  aws: 'AWS',
   gcp: 'GCP',
   azure: 'Azure',
 }
@@ -139,6 +144,11 @@ const pricingKeyMaping: TableColumns = {
 // computed values
 const cloudCostPricing = computed(() => {
   // caas
+  const caasAWS = new EcsFargateModel(
+    caasInput.value.vCPU.value,
+    caasInput.value.memory.value,
+  ).cost()
+
   const caasGCP = new CloudRunModel(
     caasInput.value.vCPU.value,
     caasInput.value.memory.value,
@@ -154,6 +164,8 @@ const cloudCostPricing = computed(() => {
   ).cost()
 
   // container registry
+  const containerRegistryAWS = new EcrModel(containerStorageInput.value.storageGB.value).cost()
+
   const containerRegistryGCP = new ArtifactRegistryModel(
     containerStorageInput.value.storageGB.value,
   ).cost()
@@ -163,15 +175,15 @@ const cloudCostPricing = computed(() => {
   ).cost()
 
   // blob storage
+  const blobStorageAWS = new S3Model(blobStorageInput.value.storageGB.value).cost()
   const blobStorageGCP = new CloudStorageModel(blobStorageInput.value.storageGB.value).cost()
-
   const blobStorageAzure = new BlobStorageModel(blobStorageInput.value.storageGB.value).cost()
 
   // pricing summary
   const pricing = {
-    caas: [caasGCP, caasAzure],
-    containerRegistry: [containerRegistryGCP, containerRegistryAzure],
-    blobStorage: [blobStorageGCP, blobStorageAzure],
+    caas: [caasAWS, caasGCP, caasAzure],
+    containerRegistry: [containerRegistryAWS, containerRegistryGCP, containerRegistryAzure],
+    blobStorage: [blobStorageAWS, blobStorageGCP, blobStorageAzure],
   }
 
   // for table component
@@ -181,8 +193,9 @@ const cloudCostPricing = computed(() => {
   for (const [key, value] of Object.entries(pricing)) {
     rows.push({
       service: pricingKeyMaping[key] as string,
-      gcp: value.at(0)?.toFixed(3) as string,
-      azure: value.at(1)?.toFixed(3) as string,
+      aws: value.at(0)?.toFixed(3) as string,
+      gcp: value.at(1)?.toFixed(3) as string,
+      azure: value.at(2)?.toFixed(3) as string,
     })
   }
 

@@ -6,7 +6,7 @@
 
 export class CloudRunModel {
   // """
-  // https://cloud.google.com/compute/all-pricing
+  // https://cloud.google.com/run/pricing
   // """
 
   // cost
