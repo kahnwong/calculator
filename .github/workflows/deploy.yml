@@ -1,18 +1,14 @@
 name: Publish to Cloudflare Pages
-
 on:
   push:
     branches: [master]
   workflow_dispatch:
-
 concurrency:
   group: environment-${{ github.ref }}
   cancel-in-progress: true
-
 env:
   PROJECT_NAME: calculator
   BUILD_DIR: dist/spa
-
 jobs:
   publish:
     runs-on: ubuntu-latest
