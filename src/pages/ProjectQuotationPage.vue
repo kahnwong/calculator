@@ -176,7 +176,7 @@ const projectQuotation = computed(() => {
   for (const [key, value] of Object.entries(projectCost)) {
     rows.push({
       role: costKeyMaping[key] as string,
-      cost: Math.round(value).toLocaleString(),
+      cost: '$' + Math.round(value).toLocaleString(),
     })
   }
 
