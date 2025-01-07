@@ -84,8 +84,8 @@ const pricingKeyMaping: TableColumns = {
 const pricingValueMapping: pricingValues = {
   0: 'Regular',
   1: 'Spot',
-  2: '1 Year Commitment',
-  3: '3 Year Commitment',
+  // 2: '1 Year Commitment',
+  // 3: '3 Year Commitment',
 }
 
 // computed values
