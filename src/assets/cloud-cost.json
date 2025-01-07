@@ -1,0 +1,14 @@
+{
+  "aws": {
+    "containerCpu": "0.05056",
+    "containerMemory": "0.00553",
+    "containerRegistryStorage": "0.1",
+    "storage": "0.025"
+  },
+  "gcp": {
+    "containerCpu": "0.0000336",
+    "containerMemory": "0.0000035",
+    "containerRegistryStorage": "0.1",
+    "storage": "0.02"
+  }
+}

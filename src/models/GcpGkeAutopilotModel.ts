@@ -1,19 +1,13 @@
-// pricing
-// """
-// Ref: https://cloud.google.com/kubernetes-engine/pricing
-// Unit: USD
-// Price: per hour
-// Region: asia-southeast1
-// """
+import { GcpGkeAutopilotCost } from 'src/utils/CloudCost'
 
 export class GeneralPurposeModel {
   vCPU: number
   memory: number
 
-  cpuRegular = 0.0549
-  memoryRegular = 0.0060729
-  cpuSpot = 0.0165
-  memorySpot = 0.0018219
+  cpuRegular = parseFloat(GcpGkeAutopilotCost.generalPurpose.cpuRegular)
+  memoryRegular = parseFloat(GcpGkeAutopilotCost.generalPurpose.memoryRegular)
+  cpuSpot = parseFloat(GcpGkeAutopilotCost.generalPurpose.cpuSpot)
+  memorySpot = parseFloat(GcpGkeAutopilotCost.generalPurpose.memorySpot)
   // cpuOneYearCommitment = 0.04392
   // memoryOneYearCommitment = 0.0048583
   // cpuThreeYearCommitment = 0.030195
@@ -25,6 +19,7 @@ export class GeneralPurposeModel {
   }
 
   costRegular() {
+    // console.log(this.cpuRegular)
     return this.vCPU * this.cpuRegular + this.memory * this.memoryRegular
   }
 
@@ -54,10 +49,10 @@ export class ScaleOutARMModel extends GeneralPurposeModel {
   constructor(vCPU: number, memory: number) {
     super(vCPU, memory)
 
-    this.cpuRegular = 0.0439
-    this.memoryRegular = 0.0048583
-    this.cpuSpot = 0.0132
-    this.memorySpot = 0.0014575
+    this.cpuRegular = parseFloat(GcpGkeAutopilotCost.scaleOutARM.cpuRegular)
+    this.memoryRegular = parseFloat(GcpGkeAutopilotCost.scaleOutARM.memoryRegular)
+    this.cpuSpot = parseFloat(GcpGkeAutopilotCost.scaleOutARM.cpuSpot)
+    this.memorySpot = parseFloat(GcpGkeAutopilotCost.scaleOutARM.memorySpot)
     // this.cpuOneYearCommitment = 0.03512
     // this.memoryOneYearCommitment = 0.0038866
     // this.cpuThreeYearCommitment = 0.024145
@@ -71,10 +66,10 @@ export class ScaleOutX86Model extends GeneralPurposeModel {
   constructor(vCPU: number, memory: number) {
     super(vCPU, memory)
 
-    this.cpuRegular = 0.0692
-    this.memoryRegular = 0.0076518
-    this.cpuSpot = 0.0208
-    this.memorySpot = 0.0022956
+    this.cpuRegular = parseFloat(GcpGkeAutopilotCost.scaleOutX86.cpuRegular)
+    this.memoryRegular = parseFloat(GcpGkeAutopilotCost.scaleOutX86.memoryRegular)
+    this.cpuSpot = parseFloat(GcpGkeAutopilotCost.scaleOutX86.cpuSpot)
+    this.memorySpot = parseFloat(GcpGkeAutopilotCost.scaleOutX86.memorySpot)
     // this.cpuOneYearCommitment = 0.05536
     // this.memoryOneYearCommitment = 0.00612144
     // this.cpuThreeYearCommitment = 0.03806

@@ -1,17 +1,9 @@
-// pricing
-// """
-// Unit: USD
-// Region: asia-southeast1
-// """
+import { CloudCost } from 'src/utils/CloudCost'
 
 export class CloudRunModel {
-  // """
-  // https://cloud.google.com/run/pricing
-  // """
-
   // cost
-  vCPUSecond = 0.0000336
-  memorySecond = 0.0000035
+  vCPUSecond = parseFloat(CloudCost.gcp.containerCpu)
+  memorySecond = parseFloat(CloudCost.gcp.containerMemory)
   requestMillion = 0.4
 
   // user's input
@@ -42,12 +34,8 @@ export class CloudRunModel {
 }
 
 export class ArtifactRegistryModel {
-  // """
-  // https://cloud.google.com/artifact-registry/pricing
-  // """
-
   // cost
-  storagePerGBMonth = 0.1
+  storagePerGBMonth = parseFloat(CloudCost.gcp.containerRegistryStorage)
 
   // user's input
   storageGB = 1
@@ -62,13 +50,9 @@ export class ArtifactRegistryModel {
 }
 
 export class CloudStorageModel extends ArtifactRegistryModel {
-  // """
-  // https://cloud.google.com/storage/pricing
-  // """
-
   constructor(storageGB: number) {
     super(storageGB)
 
-    this.storagePerGBMonth = 0.02
+    this.storagePerGBMonth = parseFloat(CloudCost.gcp.storage)
   }
 }

@@ -1,0 +1,20 @@
+{
+  "generalPurpose": {
+    "cpuRegular": "0.0549",
+    "memoryRegular": "0.0060729",
+    "cpuSpot": "0.0165",
+    "memorySpot": "0.0018219"
+  },
+  "scaleOutARM": {
+    "cpuRegular": "0.0439",
+    "memoryRegular": "0.0048583",
+    "cpuSpot": "0.0132",
+    "memorySpot": "0.0014575"
+  },
+  "scaleOutX86": {
+    "cpuRegular": "0.0692",
+    "memoryRegular": "0.0076518",
+    "cpuSpot": "0.0208",
+    "memorySpot": "0.0022956"
+  }
+}

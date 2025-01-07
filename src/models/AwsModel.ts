@@ -1,19 +1,10 @@
 import { ArtifactRegistryModel } from './GcpModel'
-
-// pricing
-// """
-// Unit: USD
-// Region: Southeast Asia
-// """
+import { CloudCost } from 'src/utils/CloudCost'
 
 export class EcsFargateModel {
-  // """
-  // https://aws.amazon.com/fargate/pricing/
-  // """
-
   // cost
-  vCPUHour = 0.05056
-  memorySecond = 0.00553
+  vCPUHour = parseFloat(CloudCost.aws.containerCpu)
+  memorySecond = parseFloat(CloudCost.aws.containerMemory)
 
   // user's input
   vCPURequest = 0.5
@@ -33,26 +24,17 @@ export class EcsFargateModel {
 }
 
 export class EcrModel extends ArtifactRegistryModel {
-  // """
-  // https://aws.amazon.com/ecr/pricing/
-  // """
-
   constructor(storageGB: number) {
     super(storageGB)
 
-    this.storagePerGBMonth = 0.1
+    this.storagePerGBMonth = parseFloat(CloudCost.aws.containerRegistryStorage)
   }
 }
 
 export class S3Model extends EcrModel {
-  // """
-  // https://azure.microsoft.com/en-us/pricing/details/storage/blobs/#pricing
-  // Standard
-  // """
-
   constructor(storageGB: number) {
     super(storageGB)
 
-    this.storagePerGBMonth = 0.025
+    this.storagePerGBMonth = parseFloat(CloudCost.aws.storage)
   }
 }

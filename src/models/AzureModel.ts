@@ -1,11 +1,5 @@
 import { CloudRunModel, ArtifactRegistryModel } from './GcpModel'
 
-// pricing
-// """
-// Unit: USD
-// Region: Southeast Asia
-// """
-
 export class ContainerAppsModel extends CloudRunModel {
   // """
   // https://azure.microsoft.com/en-us/pricing/details/container-apps/#pricing
