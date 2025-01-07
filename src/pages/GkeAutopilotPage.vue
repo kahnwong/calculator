@@ -54,7 +54,7 @@ import { type TableColumns, CreateColumnsObject } from 'src/utils/Table'
 
 // info struct
 const info: TextInfoProps = {
-  lines: ['Region: Singapore'],
+  lines: ['Region: Singapore', 'Unit: USD'],
 }
 
 // input struct

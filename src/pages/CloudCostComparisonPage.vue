@@ -91,7 +91,7 @@ import { type TableColumns, CreateColumnsObject } from 'src/utils/Table'
 
 // info struct
 const info: TextInfoProps = {
-  lines: ['Region: Singapore', 'Price: Per Month'],
+  lines: ['Region: Singapore', 'Price: USD per Month'],
 }
 
 // input struct
