@@ -28,15 +28,15 @@
             />
           </div>
         </div>
-        <!--container storage-->
+        <!--container registry-->
         <div class="col-3.5 q-pr-lg">
           <div class="fa-border">
             <div class="q-pl-sm q-pt-sm">
-              <p class="text-h4 text-bold">Container Storage</p>
+              <p class="text-h4 text-bold">Container Registry</p>
               <p class="text-bold">ECR / GAR / ACR</p>
             </div>
             <NumberInput
-              v-for="input in containerStorageInput"
+              v-for="input in containerRegistryInput"
               :key="input.label"
               v-bind="input"
               :label="input.label"
@@ -123,9 +123,9 @@ const caasInput = ref<CaaS>({
 export interface Storage {
   storageGB: NumberInputProps
 }
-const containerStorageInput = ref<Storage>({
+const containerRegistryInput = ref<Storage>({
   storageGB: {
-    label: 'Container Storage (GB)',
+    label: 'Container Registry (GB)',
     value: 5,
   },
 })
@@ -174,14 +174,14 @@ const cloudCostPricing = computed(() => {
   ).cost()
 
   // container registry
-  const containerRegistryAWS = new EcrModel(containerStorageInput.value.storageGB.value).cost()
+  const containerRegistryAWS = new EcrModel(containerRegistryInput.value.storageGB.value).cost()
 
   const containerRegistryGCP = new ArtifactRegistryModel(
-    containerStorageInput.value.storageGB.value,
+    containerRegistryInput.value.storageGB.value,
   ).cost()
 
   const containerRegistryAzure = new ContainerRegistryModel(
-    containerStorageInput.value.storageGB.value,
+    containerRegistryInput.value.storageGB.value,
   ).cost()
 
   // blob storage
