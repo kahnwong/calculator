@@ -5,6 +5,11 @@
         <span class="text-secondary">GKE Autopilot</span> Cost Calculator
       </div>
       <div class="q-pb-md"></div>
+
+      <div>
+        <TextInfoBlock :lines="info.lines"></TextInfoBlock>
+      </div>
+
       <div class="row">
         <div class="col-4.5 q-pl-sm q-pr-lg q-pb-lg">
           <div class="fa-border">
@@ -38,6 +43,7 @@
 
 <script setup lang="ts">
 import NumberInput, { type NumberInputProps } from 'components/NumberInput.vue'
+import TextInfoBlock, { type TextInfoProps } from 'components/TextInfoBlock.vue'
 import { computed, ref } from 'vue'
 import {
   GeneralPurposeModel,
@@ -45,6 +51,11 @@ import {
   ScaleOutX86Model,
 } from 'src/models/GcpGkeAutopilotModel'
 import { type TableColumns, CreateColumnsObject } from 'src/utils/Table'
+
+// info struct
+const info: TextInfoProps = {
+  lines: ['Region: Singapore'],
+}
 
 // input struct
 export interface GkeAutopilot {

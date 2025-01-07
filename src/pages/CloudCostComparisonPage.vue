@@ -6,10 +6,7 @@
       </div>
 
       <div>
-        <ul>
-          <li>Price is in <b>per month</b></li>
-          <li>Region: Singapore</li>
-        </ul>
+        <TextInfoBlock :lines="info.lines"></TextInfoBlock>
       </div>
 
       <div class="q-pb-md"></div>
@@ -36,7 +33,7 @@
           <div class="fa-border">
             <div class="q-pl-sm q-pt-sm">
               <p class="text-h4 text-bold">Container Storage</p>
-              <p class="text-bold">ECR / GAR / ACR </p>
+              <p class="text-bold">ECR / GAR / ACR</p>
             </div>
             <NumberInput
               v-for="input in containerStorageInput"
@@ -52,7 +49,7 @@
           <div class="fa-border">
             <div class="q-pl-sm q-pt-sm">
               <p class="text-h4 text-bold">Blob Storage</p>
-              <p class="text-bold">S3 / GCS / ABS </p>
+              <p class="text-bold">S3 / GCS / ABS</p>
             </div>
             <NumberInput
               v-for="input in blobStorageInput"
@@ -84,12 +81,18 @@
 </template>
 
 <script setup lang="ts">
+import TextInfoBlock, { type TextInfoProps } from 'components/TextInfoBlock.vue'
 import NumberInput, { type NumberInputProps } from 'components/NumberInput.vue'
 import { computed, ref } from 'vue'
 import { ArtifactRegistryModel, CloudRunModel, CloudStorageModel } from 'src/models/GcpModel'
 import { EcrModel, EcsFargateModel, S3Model } from 'src/models/AwsModel'
 import { BlobStorageModel, ContainerAppsModel, ContainerRegistryModel } from 'src/models/AzureModel'
 import { type TableColumns, CreateColumnsObject } from 'src/utils/Table'
+
+// info struct
+const info: TextInfoProps = {
+  lines: ['Region: Singapore', 'Price: Per Month'],
+}
 
 // input struct
 export interface CaaS {
@@ -212,7 +215,7 @@ const cloudCostPricing = computed(() => {
 
 <style>
 #layout-container-cloud-cost-comparison {
-  height: 100vh;
+  height: 120vh;
   max-width: 900px;
   margin: auto;
 }
