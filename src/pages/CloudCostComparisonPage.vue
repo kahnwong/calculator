@@ -19,6 +19,7 @@
           <div class="fa-border">
             <div class="q-pl-sm q-pt-sm">
               <p class="text-h4 text-bold">CaaS</p>
+              <p class="text-bold">ECS Fargate / Cloud Run / Container Apps</p>
               <p>*Not Applicable for AWS</p>
             </div>
             <NumberInput
@@ -33,7 +34,10 @@
         <!--container storage-->
         <div class="col-3.5 q-pr-lg">
           <div class="fa-border">
-            <div class="text-h4 text-bold q-pl-sm q-pt-sm">Container Storage</div>
+            <div class="q-pl-sm q-pt-sm">
+              <p class="text-h4 text-bold">Container Storage</p>
+              <p class="text-bold">ECR / GAR / ACR </p>
+            </div>
             <NumberInput
               v-for="input in containerStorageInput"
               :key="input.label"
@@ -46,7 +50,10 @@
         <!--blob storage-->
         <div class="col-3.5 q-pr-lg">
           <div class="fa-border">
-            <div class="text-h4 text-bold q-pl-sm q-pt-sm">Blob Storage</div>
+            <div class="q-pl-sm q-pt-sm">
+              <p class="text-h4 text-bold">Blob Storage</p>
+              <p class="text-bold">S3 / GCS / ABS </p>
+            </div>
             <NumberInput
               v-for="input in blobStorageInput"
               :key="input.label"
@@ -206,7 +213,7 @@ const cloudCostPricing = computed(() => {
 <style>
 #layout-container-cloud-cost-comparison {
   height: 100vh;
-  max-width: 800px;
+  max-width: 900px;
   margin: auto;
 }
 </style>
