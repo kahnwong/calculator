@@ -11,10 +11,10 @@
 
 <script setup lang="ts">
 export interface TextInfoProps {
-  lines: string[]
+  lines: string[];
 }
 
-withDefaults(defineProps<TextInfoProps>(), {})
+withDefaults(defineProps<TextInfoProps>(), {});
 </script>
 
 <style>

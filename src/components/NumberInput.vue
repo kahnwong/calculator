@@ -4,11 +4,11 @@
 
 <script setup lang="ts">
 export interface NumberInputProps {
-  label: string
-  value: number
+  label: string;
+  value: number;
 }
 
-withDefaults(defineProps<NumberInputProps>(), {})
+withDefaults(defineProps<NumberInputProps>(), {});
 
-const model = defineModel({ type: Number })
+const model = defineModel({ type: Number });
 </script>

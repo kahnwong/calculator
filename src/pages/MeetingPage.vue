@@ -31,35 +31,35 @@
 </template>
 
 <script setup lang="ts">
-import NumberInput, { type NumberInputProps } from 'components/NumberInput.vue'
-import { MeetingModel } from 'src/models/MeetingModel'
-import { computed, ref } from 'vue'
+import NumberInput, { type NumberInputProps } from "components/NumberInput.vue";
+import { MeetingModel } from "src/models/MeetingModel";
+import { computed, ref } from "vue";
 
 // input struct
 export interface Meeting {
-  attendees: NumberInputProps
-  meetingDurationHours: NumberInputProps
-  timesPerWeek: NumberInputProps
-  avgAttendeesSalaryPerYear: NumberInputProps
+  attendees: NumberInputProps;
+  meetingDurationHours: NumberInputProps;
+  timesPerWeek: NumberInputProps;
+  avgAttendeesSalaryPerYear: NumberInputProps;
 }
 const meetingInput = ref<Meeting>({
   attendees: {
-    label: 'Number of attendees',
+    label: "Number of attendees",
     value: 3,
   },
   meetingDurationHours: {
-    label: 'Meeting duration (hours)',
+    label: "Meeting duration (hours)",
     value: 1,
   },
   timesPerWeek: {
-    label: 'Times per week',
+    label: "Times per week",
     value: 1,
   },
   avgAttendeesSalaryPerYear: {
-    label: 'Average attendee salary (per year)',
+    label: "Average attendee salary (per year)",
     value: 100000,
   },
-})
+});
 
 // computed values
 const meetingCost = computed(() => {
@@ -68,14 +68,14 @@ const meetingCost = computed(() => {
     meetingInput.value.meetingDurationHours.value,
     meetingInput.value.timesPerWeek.value,
     meetingInput.value.avgAttendeesSalaryPerYear.value,
-  )
+  );
 
   return {
     perMeeting: Math.round(meeting.costPerMeeting),
     perMinute: Math.round(meeting.costPerMinute()),
     perYear: Math.round(meeting.costPerYear()),
-  }
-})
+  };
+});
 </script>
 
 <style>

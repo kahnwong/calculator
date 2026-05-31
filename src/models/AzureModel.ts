@@ -1,4 +1,4 @@
-import { CloudRunModel, ArtifactRegistryModel } from './GcpModel'
+import { CloudRunModel, ArtifactRegistryModel } from "./GcpModel";
 
 export class ContainerAppsModel extends CloudRunModel {
   // """
@@ -11,11 +11,11 @@ export class ContainerAppsModel extends CloudRunModel {
     executionTimePerRequestMS: number,
     requestsPerMonth: number,
   ) {
-    super(vCPURequest, memoryRequest, executionTimePerRequestMS, requestsPerMonth)
+    super(vCPURequest, memoryRequest, executionTimePerRequestMS, requestsPerMonth);
 
-    this.vCPUSecond = 0.000034
-    this.memorySecond = 0.000004
-    this.requestMillion = 0.4
+    this.vCPUSecond = 0.000034;
+    this.memorySecond = 0.000004;
+    this.requestMillion = 0.4;
   }
 }
 
@@ -25,12 +25,12 @@ export class ContainerRegistryModel extends ArtifactRegistryModel {
   // """
 
   constructor(storageGB: number) {
-    super(storageGB)
+    super(storageGB);
 
     if (this.storageGB <= 10) {
-      this.storagePerGBMonth = 0.167
+      this.storagePerGBMonth = 0.167;
     } else {
-      this.storagePerGBMonth = 0.667
+      this.storagePerGBMonth = 0.667;
     }
   }
 }
@@ -42,8 +42,8 @@ export class BlobStorageModel extends ContainerRegistryModel {
   // """
 
   constructor(storageGB: number) {
-    super(storageGB)
+    super(storageGB);
 
-    this.storagePerGBMonth = 0.02
+    this.storagePerGBMonth = 0.02;
   }
 }

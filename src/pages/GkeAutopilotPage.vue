@@ -42,89 +42,89 @@
 </template>
 
 <script setup lang="ts">
-import NumberInput, { type NumberInputProps } from 'components/NumberInput.vue'
-import TextInfoBlock, { type TextInfoProps } from 'components/TextInfoBlock.vue'
-import { computed, ref } from 'vue'
+import NumberInput, { type NumberInputProps } from "components/NumberInput.vue";
+import TextInfoBlock, { type TextInfoProps } from "components/TextInfoBlock.vue";
+import { computed, ref } from "vue";
 import {
   GeneralPurposeModel,
   ScaleOutARMModel,
   ScaleOutX86Model,
-} from 'src/models/GcpGkeAutopilotModel'
-import { type TableColumns, CreateColumnsObject } from 'src/utils/Table'
+} from "src/models/GcpGkeAutopilotModel";
+import { type TableColumns, CreateColumnsObject } from "src/utils/Table";
 
 // info struct
 const info: TextInfoProps = {
-  lines: ['Region: Singapore', 'Unit: USD'],
-}
+  lines: ["Region: Singapore", "Unit: USD"],
+};
 
 // input struct
 export interface GkeAutopilot {
-  vCPU: NumberInputProps
-  memory: NumberInputProps
+  vCPU: NumberInputProps;
+  memory: NumberInputProps;
 }
 const gkeAutopilotInput = ref<GkeAutopilot>({
   vCPU: {
-    label: 'vCPU',
+    label: "vCPU",
     value: 0.25,
   },
   memory: {
-    label: 'Memory',
+    label: "Memory",
     value: 1,
   },
-})
+});
 
 // table component struct
 export interface pricingValues {
-  [key: number]: string
+  [key: number]: string;
 }
 
 const columnsInput: TableColumns = {
-  computeType: 'Compute Type',
-  pricing: 'Pricing',
-  pricePerHour: 'Price / Hour',
-  pricePerMonth: 'Price / Month',
-}
+  computeType: "Compute Type",
+  pricing: "Pricing",
+  pricePerHour: "Price / Hour",
+  pricePerMonth: "Price / Month",
+};
 
 // table component key mapping
 const pricingKeyMaping: TableColumns = {
-  generalPurpose: 'General Purpose',
-  scaleOutARMModel: 'Scale-Out ARM',
-  scaleOutX86Model: 'Scale-Out x86',
-}
+  generalPurpose: "General Purpose",
+  scaleOutARMModel: "Scale-Out ARM",
+  scaleOutX86Model: "Scale-Out x86",
+};
 
 const pricingValueMapping: pricingValues = {
-  0: 'Regular',
-  1: 'Spot',
+  0: "Regular",
+  1: "Spot",
   // 2: '1 Year Commitment',
   // 3: '3 Year Commitment',
-}
+};
 
 // computed values
 const gkeAutopilotCost = computed(() => {
   const generalPurpose = new GeneralPurposeModel(
     gkeAutopilotInput.value.vCPU.value,
     gkeAutopilotInput.value.memory.value,
-  )
+  );
 
   const scaleOutARMModel = new ScaleOutARMModel(
     gkeAutopilotInput.value.vCPU.value,
     gkeAutopilotInput.value.memory.value,
-  )
+  );
 
   const scaleOutX86Model = new ScaleOutX86Model(
     gkeAutopilotInput.value.vCPU.value,
     gkeAutopilotInput.value.memory.value,
-  )
+  );
 
   const pricing = {
     generalPurpose: generalPurpose.pricing(),
     scaleOutARMModel: scaleOutARMModel.pricing(),
     scaleOutX86Model: scaleOutX86Model.pricing(),
-  }
+  };
 
   // for table component
-  const columns = CreateColumnsObject(columnsInput)
-  const rows: TableColumns[] = []
+  const columns = CreateColumnsObject(columnsInput);
+  const rows: TableColumns[] = [];
 
   for (const [key, value] of Object.entries(pricing)) {
     for (const [i, v] of value.entries()) {
@@ -133,12 +133,12 @@ const gkeAutopilotCost = computed(() => {
         pricing: pricingValueMapping[i] as string,
         pricePerHour: v.toFixed(3),
         pricePerMonth: (v * 24 * 30).toFixed(3),
-      })
+      });
     }
   }
 
-  return { columns, rows }
-})
+  return { columns, rows };
+});
 </script>
 
 <style>

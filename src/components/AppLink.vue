@@ -5,11 +5,11 @@
 
 <script setup lang="ts">
 export interface AppLinkProps {
-  title: string
-  link: string
+  title: string;
+  link: string;
 }
 
-withDefaults(defineProps<AppLinkProps>(), {})
+withDefaults(defineProps<AppLinkProps>(), {});
 </script>
 
 <style>

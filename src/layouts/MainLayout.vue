@@ -25,44 +25,44 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import AppLink, { type AppLinkProps } from 'components/AppLink.vue'
+import { ref } from "vue";
+import AppLink, { type AppLinkProps } from "components/AppLink.vue";
 
 const linksList: AppLinkProps[] = [
   {
-    title: 'Meeting Cost',
-    link: '/meeting',
+    title: "Meeting Cost",
+    link: "/meeting",
   },
   {
-    title: 'GKE Autopilot',
-    link: '/gke-autopilot',
+    title: "GKE Autopilot",
+    link: "/gke-autopilot",
   },
   {
-    title: 'GKE Autopilot: Spark Job',
-    link: '/gke-autopilot-spark-job',
+    title: "GKE Autopilot: Spark Job",
+    link: "/gke-autopilot-spark-job",
   },
   {
-    title: 'Cloud Cost Comparison',
-    link: '/cloud-cost-comparison',
+    title: "Cloud Cost Comparison",
+    link: "/cloud-cost-comparison",
   },
   {
-    title: 'Project Quotation',
-    link: '/project-quotation',
+    title: "Project Quotation",
+    link: "/project-quotation",
   },
-]
+];
 
-const leftDrawerOpen = ref(false)
+const leftDrawerOpen = ref(false);
 
 function toggleLeftDrawer() {
-  leftDrawerOpen.value = !leftDrawerOpen.value
+  leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 
 // analytics
-if (process.env.NODE_ENV != 'development') {
-  const analyticsScript = document.createElement('script')
-  analyticsScript.setAttribute('defer', '')
-  analyticsScript.setAttribute('src', 'https://umami.karnwong.me/script.js')
-  analyticsScript.setAttribute('data-website-id', 'de8b4631-aac2-41ef-9286-38730945ba04')
-  document.head.appendChild(analyticsScript)
+if (process.env.NODE_ENV != "development") {
+  const analyticsScript = document.createElement("script");
+  analyticsScript.setAttribute("defer", "");
+  analyticsScript.setAttribute("src", "https://umami.karnwong.me/script.js");
+  analyticsScript.setAttribute("data-website-id", "de8b4631-aac2-41ef-9286-38730945ba04");
+  document.head.appendChild(analyticsScript);
 }
 </script>
