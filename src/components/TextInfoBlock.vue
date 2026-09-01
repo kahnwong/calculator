@@ -9,12 +9,14 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 export interface TextInfoProps {
-  lines: string[];
+  lines: string[]
 }
+</script>
 
-withDefaults(defineProps<TextInfoProps>(), {});
+<script setup lang="ts">
+withDefaults(defineProps<TextInfoProps>(), {})
 </script>
 
 <style>

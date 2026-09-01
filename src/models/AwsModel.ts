@@ -1,5 +1,5 @@
 import { ArtifactRegistryModel } from './GcpModel'
-import { CloudCost } from 'src/utils/CloudCost'
+import { CloudCost } from '@/utils/CloudCost'
 
 export class EcsFargateModel {
   // cost

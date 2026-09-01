@@ -1,4 +1,4 @@
-import { GcpGkeAutopilotCost } from 'src/utils/CloudCost'
+import { GcpGkeAutopilotCost } from '@/utils/CloudCost'
 
 export class GeneralPurposeModel {
   vCPU: number

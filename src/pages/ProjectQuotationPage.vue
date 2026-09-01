@@ -67,74 +67,74 @@
 </template>
 
 <script setup lang="ts">
-import NumberInput, { type NumberInputProps } from "components/NumberInput.vue";
-import { computed, ref } from "vue";
-import { type TableColumns, CreateColumnsObject } from "src/utils/Table";
-import { ProjectQuotationModel } from "src/models/ProjectQuotationModel";
+import NumberInput, { type NumberInputProps } from '@/components/NumberInput.vue'
+import { computed, ref } from 'vue'
+import { type TableColumns, CreateColumnsObject } from '@/utils/Table'
+import { ProjectQuotationModel } from '@/models/ProjectQuotationModel'
 
 // input struct
 export interface Role {
-  salary: NumberInputProps;
-  mandayUnit: NumberInputProps;
-  durationWeeks: NumberInputProps;
+  salary: NumberInputProps
+  mandayUnit: NumberInputProps
+  durationWeeks: NumberInputProps
 }
 const projectManagerRoleInput = ref<Role>({
   salary: {
-    label: "Salary",
+    label: 'Salary',
     value: 90000,
   },
   mandayUnit: {
-    label: "Manday Ratio per Day",
+    label: 'Manday Ratio per Day',
     value: 0.5,
   },
   durationWeeks: {
-    label: "Duration (Weeks)",
+    label: 'Duration (Weeks)',
     value: 4,
   },
-});
+})
 const architectRoleInput = ref<Role>({
   salary: {
-    label: "Salary",
+    label: 'Salary',
     value: 140000,
   },
   mandayUnit: {
-    label: "Manday Ratio per Day",
+    label: 'Manday Ratio per Day',
     value: 0.5,
   },
   durationWeeks: {
-    label: "Duration (Weeks)",
+    label: 'Duration (Weeks)',
     value: 4,
   },
-});
+})
 const developerRoleInput = ref<Role>({
   salary: {
-    label: "Salary",
+    label: 'Salary',
     value: 100000,
   },
   mandayUnit: {
-    label: "Persons",
+    label: 'Persons',
     value: 1,
   },
   durationWeeks: {
-    label: "Duration (Weeks)",
+    label: 'Duration (Weeks)',
     value: 4,
   },
-});
+})
 
 // table component struct
 const columnsInput: TableColumns = {
-  role: "Role",
-  cost: "Cost",
-};
+  role: 'Role',
+  cost: 'Cost',
+}
 
 // table component key mapping
 const costKeyMaping: TableColumns = {
-  projectManager: "Project Manager",
-  architect: "Architect",
-  developer: "Developer",
-  total: "Total",
-  totalWithAdjustment: "Total With Adjustment",
-};
+  projectManager: 'Project Manager',
+  architect: 'Architect',
+  developer: 'Developer',
+  total: 'Total',
+  totalWithAdjustment: 'Total With Adjustment',
+}
 
 // computed values
 const projectQuotation = computed(() => {
@@ -143,22 +143,22 @@ const projectQuotation = computed(() => {
     projectManagerRoleInput.value.salary.value,
     projectManagerRoleInput.value.mandayUnit.value,
     projectManagerRoleInput.value.durationWeeks.value,
-  ).cost();
+  ).cost()
 
   const architectCost = new ProjectQuotationModel(
     architectRoleInput.value.salary.value,
     architectRoleInput.value.mandayUnit.value,
     architectRoleInput.value.durationWeeks.value,
-  ).cost();
+  ).cost()
 
   const developerCost = new ProjectQuotationModel(
     developerRoleInput.value.salary.value,
     developerRoleInput.value.mandayUnit.value,
     developerRoleInput.value.durationWeeks.value,
-  ).cost();
+  ).cost()
 
-  const totalCostRaw = projectManagerCost + architectCost + developerCost;
-  const totalCostWithAdjustment = totalCostRaw * 1.3 * 3;
+  const totalCostRaw = projectManagerCost + architectCost + developerCost
+  const totalCostWithAdjustment = totalCostRaw * 1.3 * 3
 
   // cost summary
   const projectCost = {
@@ -167,21 +167,21 @@ const projectQuotation = computed(() => {
     developer: developerCost,
     total: totalCostRaw,
     totalWithAdjustment: totalCostWithAdjustment,
-  };
+  }
 
   // for table component
-  const columns = CreateColumnsObject(columnsInput);
-  const rows: TableColumns[] = [];
+  const columns = CreateColumnsObject(columnsInput)
+  const rows: TableColumns[] = []
 
   for (const [key, value] of Object.entries(projectCost)) {
     rows.push({
       role: costKeyMaping[key] as string,
-      cost: "$" + Math.round(value).toLocaleString(),
-    });
+      cost: '$' + Math.round(value).toLocaleString(),
+    })
   }
 
-  return { columns, rows };
-});
+  return { columns, rows }
+})
 </script>
 
 <style>

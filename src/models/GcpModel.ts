@@ -1,4 +1,4 @@
-import { CloudCost } from 'src/utils/CloudCost'
+import { CloudCost } from '@/utils/CloudCost'
 
 export class CloudRunModel {
   // cost

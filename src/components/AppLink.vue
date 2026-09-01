@@ -3,13 +3,15 @@
   </q-route-tab>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 export interface AppLinkProps {
-  title: string;
-  link: string;
+  title: string
+  link: string
 }
+</script>
 
-withDefaults(defineProps<AppLinkProps>(), {});
+<script setup lang="ts">
+withDefaults(defineProps<AppLinkProps>(), {})
 </script>
 
 <style>

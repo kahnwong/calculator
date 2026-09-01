@@ -27,51 +27,51 @@
 </template>
 
 <script setup lang="ts">
-import NumberInput, { type NumberInputProps } from "components/NumberInput.vue";
-import { computed, ref } from "vue";
-import { GeneralPurposeModel, ScaleOutARMModel } from "src/models/GcpGkeAutopilotModel";
+import NumberInput, { type NumberInputProps } from '@/components/NumberInput.vue'
+import { computed, ref } from 'vue'
+import { GeneralPurposeModel, ScaleOutARMModel } from '@/models/GcpGkeAutopilotModel'
 
 // input struct
 export interface GkeSparkJob {
-  vCPU: NumberInputProps;
-  memory: NumberInputProps;
-  executors: NumberInputProps;
-  jobDurationHour: NumberInputProps;
+  vCPU: NumberInputProps
+  memory: NumberInputProps
+  executors: NumberInputProps
+  jobDurationHour: NumberInputProps
 }
 const gkeSparkJobInput = ref<GkeSparkJob>({
   vCPU: {
-    label: "vCPU",
+    label: 'vCPU',
     value: 2,
   },
   memory: {
-    label: "Memory",
+    label: 'Memory',
     value: 2,
   },
   executors: {
-    label: "Executors",
+    label: 'Executors',
     value: 1,
   },
   jobDurationHour: {
-    label: "Job duration (hours)",
+    label: 'Job duration (hours)',
     value: 3,
   },
-});
+})
 
 // computed values
 function computePriceToSparkJobPrice(costSpot: number, jobDurationHour: number, executors: number) {
-  return costSpot * jobDurationHour * (1 + executors);
+  return costSpot * jobDurationHour * (1 + executors)
 }
 
 const gkeSparkJobCost = computed(() => {
   const regularSpotPrice = new GeneralPurposeModel(
     gkeSparkJobInput.value.vCPU.value,
     gkeSparkJobInput.value.memory.value,
-  ).costSpot();
+  ).costSpot()
 
   const scaleOutARMSpotPrice = new ScaleOutARMModel(
     gkeSparkJobInput.value.vCPU.value,
     gkeSparkJobInput.value.memory.value,
-  ).costSpot();
+  ).costSpot()
 
   return {
     regularSpotPrice: computePriceToSparkJobPrice(
@@ -84,8 +84,8 @@ const gkeSparkJobCost = computed(() => {
       gkeSparkJobInput.value.jobDurationHour.value,
       gkeSparkJobInput.value.executors.value,
     ).toFixed(4),
-  };
-});
+  }
+})
 </script>
 
 <style>
