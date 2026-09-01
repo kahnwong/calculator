@@ -2,7 +2,7 @@ name: Node Test
 on:
   pull_request:
     paths-ignore:
-      - ".github/**"
+      - '.github/**'
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -16,8 +16,8 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v7.0.0
         with:
-          node-version: "24"
-          cache: "yarn"
+          node-version: '24'
+          cache: 'yarn'
       - name: Install requirements
         run: yarn install
       - name: Build
