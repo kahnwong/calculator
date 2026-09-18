@@ -28,14 +28,14 @@
     "autoprefixer": "^10.4.2",
     "oxfmt": "^0.65.0",
     "oxlint": "^1.28.0",
-    "typescript": "~6.0.0",
+    "typescript": "~7.0.0",
     "vite-plugin-checker": "^0.14.0",
     "vue-tsc": "^3.1.1"
   },
   "engines": {
     "node": "^28 || ^26 || ^24 || ^22 || ^20 || ^18",
     "npm": ">= 6.13.4",
-    "yarn": ">= 1.21.1"
+    "yarn": ">= 4"
   },
   "productName": "Calculator"
 }
